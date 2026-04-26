@@ -11,6 +11,10 @@ function Perfil() {
         password: "******",
     });
 
+    const resetPassword = () => {
+        window.location.assign("/resetPassword");
+    }
+
 
 
 
@@ -28,7 +32,7 @@ function Perfil() {
                         <li>Cognoms: {user.lastname}</li>
                         <li>Correu electrònic: {user.email}</li>
                         <li>Nom d'usuari: {user.username}</li>
-                        <li>Contrasenya: {user.password}<img src={edit_icon} alt="edit" className="icona-editar"/></li>
+                        <li>Contrasenya: {user.password}<img src={edit_icon} onClick={resetPassword} alt="edit" className="icona-editar"/></li>
                     </ul>
                 </div>
             </div>
@@ -37,4 +41,4 @@ function Perfil() {
     )
 }
 
-export default Perfil
+export default Perfil;
