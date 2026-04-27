@@ -1,0 +1,9 @@
+.cards-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.main-content {
+  padding: 20px;
+}

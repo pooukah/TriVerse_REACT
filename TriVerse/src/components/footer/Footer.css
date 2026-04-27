@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+  background-color: #75759b;  
+  margin-top: 50px;  
+}
+
+.seccion {
+  text-align: center;
+}
+
+.seccion h3, .seccion h4 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.seccion p {
+  color: #cccccc;
+  margin: 8px 0;
+}
+
+.seccion p:hover {
+  color: white;
+  cursor: pointer;
+}
