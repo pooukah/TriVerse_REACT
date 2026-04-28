@@ -118,7 +118,9 @@ body {
 .container-principal-reviews {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 25px;
+  margin: 1px;
+  margin-top: 100px;
 }
 .div-reviews {
   display: flex;
@@ -129,14 +131,16 @@ body {
 
 .div-reviews img {
   width: 600px;
+  height: 300px;
   border-radius: 5px;
+  margin: -50px;
 }
 
 .container-descripcio {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-top: -580px;
+  margin-top: -520px;
   margin-right: 400px;
 }
 
@@ -164,10 +168,13 @@ body {
 .subtitol-review {
   font-family:'Times New Roman', Times, serif;
   font-size: 35px;
-  text-align: center;
+  text-align: flex-start;
+  margin: 80px;
 }
 
 .div-ressenya {
+  display: flex;
+  list-style-type: none;
   border: 1px solid black;
   border-radius: 5px;
   width: 500px;
@@ -175,10 +182,55 @@ body {
   padding: 5px;
 }
 
+.container-cardRessenya {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.container-cardRessenya li {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+}
 .ressenyes-container {
   display: grid;
   grid-template-columns: auto auto;
   gap: 30px;
+  margin-top: -80px;
+}
+
+.ul-donacions {
+  list-style-type: none;
+  border: 1px solid black;
+  width: 500px;
+  height: 175px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.ul-donacions li {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+}
+
+.donacions-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: -510px;
+  gap: 30px;
+  padding: 25px;
+}
+
+.subtitol-donacions {
+  font-family:'Times New Roman', Times, serif;
+  font-size: 35px;
   margin: 80px;
-  margin-top: 20px;
+  margin-left: -45px;
+}
+
+.subtitols-reviews {
+  display: flex;
+  flex-direction: row;
+  gap: 500px;
 }

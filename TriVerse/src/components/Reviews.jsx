@@ -1,7 +1,9 @@
 import game from '../imatges/game.jpg';
 import CardRessenya from './CardRessenya.jsx';
+import CardDonacio from './CardDonacio.jsx';
 
 function Reviews() {
+    
     return (
         <div>
             <div className="container-principal-reviews">
@@ -15,14 +17,18 @@ function Reviews() {
                         <button>Afegir review</button>
                     </div>
                 </div>
-                <h1 className="subtitol-review">Totes les reviews</h1>
+                <div className="subtitols-reviews">
+                    <h1 className="subtitol-review">Totes les reviews</h1>
+                    <h1 className="subtitol-donacions">Donacions</h1>
+                </div>
+
                 <section className="ressenyes-container">
                     <CardRessenya />
-                    <CardRessenya />
-                    <CardRessenya />
-                    <CardRessenya />
-                    <CardRessenya />
-                    <CardRessenya />
+                </section>
+                <section className="donacions-container">
+                    <CardDonacio />
+                    <CardDonacio />
+
                 </section>
             </div>
         </div>
