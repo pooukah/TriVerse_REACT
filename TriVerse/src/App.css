@@ -1,6 +1,6 @@
 /* Pàgina de perfil */
 body {
-  background-color: rgb(161, 161, 161);
+  background-color: white;
 }
 .container-perfil {
   display: flex;
@@ -122,6 +122,7 @@ body {
   margin: 1px;
   margin-top: 100px;
 }
+
 .div-reviews {
   display: flex;
   gap: 20px;
@@ -140,21 +141,33 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-top: -520px;
-  margin-right: 400px;
+  margin-top: -580px;
+  padding: 50px;
 }
 
 .div-descripcio {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 2px;
+}
 
+
+.div-descripcio p {
+  width: 500px;
+  text-align: justify;
+}
+
+.div-botons-review {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
 }
 
 .div-descripcio button {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
-  width: 120px;
+  width: 140px;
   height: 30px;
   border-radius: 5px;
 }
@@ -185,17 +198,30 @@ body {
 .container-cardRessenya {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  width: 500px;
+  height: 175px;
+  height: 180px;
 }
 
-.container-cardRessenya li {
+.container-ressenya {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+.container-cardRessenya p {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
 }
+
 .ressenyes-container {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
   margin-top: -80px;
 }
 
@@ -217,9 +243,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-top: -510px;
-  gap: 30px;
-  padding: 25px;
+  margin-top: -495px;
+  gap: 10px;
+  padding: 20px;
 }
 
 .subtitol-donacions {
@@ -233,4 +259,40 @@ body {
   display: flex;
   flex-direction: row;
   gap: 500px;
+}
+
+/* Pàgina afegir ressenya */
+
+.div-afegir-ressenya {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 120px;
+  gap: 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+.div-afegir-ressenya p {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+}
+
+.div-afegir-ressenya textarea {
+  border-radius: 7px;
+}
+
+.botons-afegir-review {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.botons-afegir-review button {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 15px;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
 }

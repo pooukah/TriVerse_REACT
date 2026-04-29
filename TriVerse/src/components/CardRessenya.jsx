@@ -32,12 +32,13 @@ function CardRessenya() {
   
         
     return (
-        <div>
-            <ul className="container-cardRessenya">
-                {reviews.map((review) => (
-                    <li className="div-ressenya">{review.user} : {review.description}</li>
-                ))}
-            </ul>
+        <div className="container-ressenya">
+            {reviews.map((review) => (
+                <div className="container-cardRessenya">
+                    <h1>{review.user}</h1>
+                    <p>{review.description}</p>
+                </div>
+            ))}
         </div>
     )
 }
