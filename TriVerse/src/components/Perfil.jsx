@@ -11,7 +11,7 @@ function Perfil() {
     const [profileData, setProfileData] = useState([]);
         
         async function getProfileData() {
-            const url = "http://127.0.0.1:8000/api/profile?format=json";
+            const url = `http://127.0.0.1:8000/api/profile/${id}/`;
             try {
                 const response = await fetch(url, { method: "GET" });
                 if(response.ok) {
