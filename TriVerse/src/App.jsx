@@ -20,7 +20,7 @@ function App(){
       <Footer/>*/
     <BrowserRouter>
         <Routes>
-          <Route path="/perfil" element={<Perfil />} />
+          <Route path="/perfil/:id" element={<Perfil />} />
           <Route path="/resetPassword" element={<ResetPassword />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/afegirReview" element={<AfegirReview />} />

@@ -44,17 +44,16 @@ function Reviews() {
             <div className="container-principal-reviews">
                 {objects.map((obj) => (
                 <div className="div-reviews">
-                    <img src={obj.img_url} alt="imatge d'un joc" />
                 </div>
                 ))}
                 
                 <div className="container-descripcio">
-                    {objects.map((obj) =>(
+                    {objects.map((obj, index) =>(
                     <div className="div-descripcio">
-                        <h1 className="titol-review">{obj.title}</h1>
-                        <p>{obj.sinopsis}</p>
-                        <p>Plataforma: {obj.platform}</p>
-                        <p>Tipus: {obj.type}</p>
+                        <h1 className="titol-review" key={index}>{obj.title}</h1>
+                        <p key={index}>{obj.sinopsis}</p>
+                        <p key={index}>Plataforma: {obj.platform}</p>
+                        <p key={index}>Tipus: {obj.type}</p>
                         <div className="div-botons-review">
                             <button onClick={afegirReview}>Afegir review</button>
                             <button>Afegir donació</button>
