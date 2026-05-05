@@ -1,7 +1,7 @@
-import game from '../imatges/game.jpg';
 import CardRessenya from './CardRessenya.jsx';
-import CardDonacio from './CardDonacio.jsx';
+import CardDonacio from '../CardDonacio.jsx';
 import { useState, useEffect } from 'react';
+import AfegirReview from '../Reviews/AfegirReview.jsx';
 
 function Reviews() {
 
@@ -9,6 +9,7 @@ function Reviews() {
         window.location.assign("/afegirReview");
     }
 
+    const [isOpen, setIsOpen] = useState(false);
     const [objects, setObjects] = useState([]);
         
         async function getObject() {
@@ -55,12 +56,18 @@ function Reviews() {
                         <p key={index}>Plataforma: {obj.platform}</p>
                         <p key={index}>Tipus: {obj.type}</p>
                         <div className="div-botons-review">
-                            <button onClick={afegirReview}>Afegir review</button>
+                            <button className="add-button" onClick={()=> setIsOpen(true)} >Afegir review</button>
+
                             <button>Afegir donació</button>
                         </div>
+                        
                     </div>
                     ))}
                 </div>
+                {isOpen && <div>
+                    <AfegirReview /> 
+                    </div>
+                }
                 <div className="subtitols-reviews">
                     <h1 className="subtitol-review">Totes les reviews</h1>
                     <h1 className="subtitol-donacions">Donacions</h1>
@@ -79,5 +86,30 @@ function Reviews() {
 
     )
 }
+
+/*const overlayStyle = {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "grey",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+};
+
+const modalStyle = {
+    background: "white",
+    padding: "20px",
+    borderRadius: "8px",
+    width: "300px",
+    textAlign: "center",
+    boxShadow: "0 5px 15px rgba(0,0,0,0.3)"
+
+}*/
+
+
+
 
 export default Reviews;

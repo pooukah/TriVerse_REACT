@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
 function AfegirReview() {
+
+
     const tornarPageReviews = () => {
-        window.location.assign("/reviews");
+        window.location.replace("/reviews");
     }
 
     const [description, setDescription] = useState("");
@@ -44,26 +46,24 @@ function AfegirReview() {
         <div>
             <form onSubmit={handleSubmit}>
                 <div className="div-afegir-ressenya">
-                    <label>
-                        <p>Escriu una ressenya:</p>
-                        <textarea
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            rows={20} cols={60} 
-                            placeholder="Introdueix la review"
-                        />
-                    </label>
+                    <textarea
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        rows={8} cols={40} 
+                        placeholder="Introdueix la review"
+                    />
                     <label>
                         Puntuació:
                         <input
                             type="number"
                             value={rating}
+                            className="input-rating"
                             onChange={(e) => setRating(e.target.value)}
                         />
                     </label>
                     <div className="botons-afegir-review">
                         <button type="button" onClick={tornarPageReviews}>Cancelar</button>
-                        <button type="submit">Afegir</button>
+                        <button type="submit" onClick={tornarPageReviews}>Afegir</button>
                     </div>
                 </div>
             </form>
