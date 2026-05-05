@@ -1,6 +1,10 @@
 /* Pàgina de perfil */
 body {
+<<<<<<< Updated upstream
   background-color: white;
+=======
+  background-color: rgb(60, 60, 79);
+>>>>>>> Stashed changes
 }
 .container-perfil {
   display: flex;
