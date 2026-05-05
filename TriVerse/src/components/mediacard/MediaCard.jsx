@@ -5,7 +5,7 @@ const MediaCard = ({title, rating, image}) =>{
     return(
         <div className="media-card">
             <div className="media-image">
-                <img src={image}/>
+                <img src={image || "https://via.placeholder.com/200"}/>
             </div>
             <div className='media-info'>
                 <h3 className='media-title'>{title || "titulo"}</h3>

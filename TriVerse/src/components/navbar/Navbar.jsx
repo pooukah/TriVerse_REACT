@@ -3,6 +3,7 @@ import './Navbar.css';
 import { estaLogueado } from '../../utils';
 import Modal from '../auth/Modal';
 import AuthContainer from '../auth/AuthContainer';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [logged, setLogged] = useState(false);
@@ -23,10 +24,11 @@ const Navbar = () => {
       <h2 className="logo" onClick={() => window.location.href='/'} style={{cursor:'pointer'}}>TriVerse</h2>
 
       <div className="botones">
-        <button className="btn">Home</button>
-        <button className="btn">Videojuegos</button>
-        <button className="btn">Películas</button>
-        <button className="btn">Libros</button>
+            <Link to="/" className="btn">Home</Link>
+            <Link to="/videojuegos" className="btn">Videojuegos</Link>
+            <Link to="/peliculas" className="btn">Películas</Link>
+            <Link to="/libros" className="btn">Libros</Link>
+          
 
         {logged ? (
           <>
@@ -46,5 +48,6 @@ const Navbar = () => {
     </div>
   );
 }
+
 
 export default Navbar;
