@@ -35,7 +35,7 @@ function CardRessenya() {
         <div className="container-ressenya">
             {reviews.map((review) => (
                 <div className="container-cardRessenya">
-                    <h1>{review.user}</h1>
+                    <h1><b>{review.user}</b></h1>
                     <p>{review.description}</p>
                 </div>
             ))}

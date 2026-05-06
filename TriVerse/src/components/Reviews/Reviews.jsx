@@ -1,7 +1,7 @@
-import game from '../imatges/game.jpg';
 import CardRessenya from './CardRessenya.jsx';
 import CardDonacio from './CardDonacio.jsx';
 import { useState, useEffect } from 'react';
+import AfegirReview from '../Reviews/AfegirReview.jsx';
 
 function Reviews() {
 
@@ -9,6 +9,7 @@ function Reviews() {
         window.location.assign("/afegirReview");
     }
 
+    const [isOpen, setIsOpen] = useState(false);
     const [objects, setObjects] = useState([]);
         
         async function getObject() {
@@ -51,16 +52,22 @@ function Reviews() {
                     {objects.map((obj, index) =>(
                     <div className="div-descripcio">
                         <h1 className="titol-review" key={index}>{obj.title}</h1>
-                        <p key={index}>{obj.sinopsis}</p>
-                        <p key={index}>Plataforma: {obj.platform}</p>
-                        <p key={index}>Tipus: {obj.type}</p>
+                        <p key={index} className="img-review">{obj.img_url}</p>
+                        <p key={index} className="sinopsis">{obj.sinopsis}</p>
+                        <p key={index} className="plataforma"><b>Plataforma:</b> {obj.platform}</p>
+                        <p key={index} className="tipus"><b>Tipus:</b> {obj.type}</p>
                         <div className="div-botons-review">
-                            <button onClick={afegirReview}>Afegir review</button>
+                            <button className="add-button" onClick={()=> setIsOpen(true)} >Afegir review</button>
                             <button>Afegir donació</button>
                         </div>
+                        
                     </div>
                     ))}
                 </div>
+                {isOpen && <div>
+                    <AfegirReview /> 
+                    </div>
+                }
                 <div className="subtitols-reviews">
                     <h1 className="subtitol-review">Totes les reviews</h1>
                     <h1 className="subtitol-donacions">Donacions</h1>
@@ -79,5 +86,9 @@ function Reviews() {
 
     )
 }
+
+
+
+
 
 export default Reviews;
