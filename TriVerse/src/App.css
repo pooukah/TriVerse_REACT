@@ -1,15 +1,13 @@
 /* Pàgina de perfil */
+
 body {
-<<<<<<< Updated upstream
   background-color: white;
-=======
   background-color: rgb(60, 60, 79);
->>>>>>> Stashed changes
 }
 .container-perfil {
   display: flex;
   justify-content: center;
-  margin: 50px;
+  margin: 20px;
 }
 
 .container-img-perfil {
@@ -28,7 +26,7 @@ body {
   width: 650px;
   height: 620px;
   border-radius: 10px;
-  background-color: white;
+  background-color: rgb(203, 201, 201);
 }
 .titol-perfil {
   font-family:'Times New Roman', Times, serif;
@@ -38,8 +36,8 @@ body {
 
 .div-imatge-perfil {
   border: 1px solid black;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 80px;
 }
 
@@ -61,12 +59,23 @@ body {
   width: 70px;
   height: 30px;
   border-radius: 5px;
+  background-color: aquamarine;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
 }
+
+.boto-pujar-img:hover {
+  background-color: rgb(111, 221, 185);
+  color: white;
+}
+
 
 .icona-editar {
   width: 30px;
   height: 30px;
   margin-left: 15px;
+  cursor: pointer;
 }
 
 
@@ -75,7 +84,7 @@ body {
 .container-reset-password {
   display: flex;
   justify-content: center;
-  margin: 200px;
+  margin: 60px;
 }
 .div-reset-password {
   display: flex;
@@ -87,6 +96,7 @@ body {
   padding: 30px;
   width: 800px;
   height: 300px;
+  background-color: rgb(203, 201, 201);
 }
 
 .botons-reset-password {
@@ -102,7 +112,16 @@ body {
   width: 90px;
   height: 30px;
   border-radius: 5px;
+  background-color: aquamarine;
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
+
+.botons-reset-password button:hover {
+  background-color: rgb(111, 221, 185);
+  color: white;
+}
+
 
 .div-reset-password input {
   border-radius: 5px;
@@ -114,6 +133,7 @@ body {
   width: 20px;
   height: 20px;
   margin-left: 10px;
+  cursor: pointer;
 
 }
 
@@ -145,27 +165,75 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-top: -580px;
-  padding: 50px;
+  margin-top: -530px;
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: rgb(203, 201, 201);
+}
+
+.titol-review {
+  grid-area: el1;
+  font-family:'Times New Roman', Times, serif;
+  font-size: 50px;
+  color: black;
+}
+
+.img-review {
+  grid-area: el2;
+  border: 1px solid black;
+  border-radius: 7px;
+}
+
+.sinopsis {
+  grid-area: el3;
+}
+
+.plataforma {
+  grid-area: el4;
+}
+
+.tipus {
+  grid-area: el5;
+}
+
+.div-botons-review {
+  grid-area: el6;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
 }
 
 .div-descripcio {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  display: grid;
+  grid-template-areas:'el2 el1'
+                      'el2 el3'
+                      'el2 el4'
+                      'el2 el5'
+                      'el2 el6';
+  grid-template-columns: auto auto;
+  padding: 25px;
+  gap: 30px 200px;
 }
 
 
 .div-descripcio p {
   width: 500px;
   text-align: justify;
+  color: black;
 }
 
-.div-botons-review {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 50px;
+
+
+.div-botons-review button {
+  background-color: aquamarine;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.div-botons-review button:hover {
+  background-color: rgb(111, 221, 185);
+  color: white;
 }
 
 .div-descripcio button {
@@ -176,11 +244,7 @@ body {
   border-radius: 5px;
 }
 
-.titol-review {
-  font-family:'Times New Roman', Times, serif;
-  font-size: 50px;
-  margin-top: 150px;
-}
+
 
 .subtitol-review {
   font-family:'Times New Roman', Times, serif;
@@ -207,19 +271,20 @@ body {
   padding: 5px;
   width: 500px;
   height: 175px;
-  height: 180px;
+  background-color:darkkhaki;
 }
 
 .container-ressenya {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 50px;
 }
 
 
 .container-cardRessenya p {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: 15px;
+  color: black;
 }
 
 .ressenyes-container {
@@ -236,6 +301,7 @@ body {
   height: 175px;
   border-radius: 5px;
   padding: 5px;
+  background-color:tan;
 }
 
 .ul-donacions li {
@@ -247,7 +313,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-top: -495px;
+  margin-top: -500px;
   gap: 10px;
   padding: 20px;
 }
@@ -263,6 +329,7 @@ body {
   display: flex;
   flex-direction: row;
   gap: 500px;
+  color: white;
 }
 
 .overlayStyle {
@@ -282,6 +349,8 @@ body {
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+
+
 /* Pàgina afegir ressenya */
 
 .div-afegir-ressenya {
@@ -292,11 +361,11 @@ body {
   flex-direction: column;
   align-items: center;
   margin: 120px;
-  margin-left: 425px;
-  margin-top: 250px;
+  margin-left: 420px;
+  margin-top: 285px;
   gap: 20px;
   border: 1px solid black;
-  background-color: rgb(194, 193, 193);
+  background-color: cornflowerblue;
   width: 350px;
   border-radius: 10px;
   padding: 25px;
@@ -333,4 +402,12 @@ body {
   width: 78px;
   height: 25px;
   border-radius: 5px;
+  background-color: aquamarine;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.botons-afegir-review button:hover {
+  background-color: rgb(111, 221, 185);
+  color: white;
 }

@@ -1,9 +1,6 @@
-<<<<<<<< HEAD:TriVerse/src/components/Profile/ResetPassword.jsx
 import eye_off_icon from '../../imatges/eye_off_icon.png';
 import eye_visible from '../../imatges/eye_visible.png';
-========
 
->>>>>>>> origin/main:TriVerse/src/components/resetpassword/ResetPassword.jsx
 
 // Funció per activar i desactivar la visibilitat de la contrasenya
 function mostrarPassword() {

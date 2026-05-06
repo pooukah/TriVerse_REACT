@@ -50,7 +50,7 @@ function AfegirReview() {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         rows={8} cols={40} 
-                        placeholder="Introdueix la review"
+                        placeholder="Escriu una review..."
                     />
                     <label>
                         Puntuació:

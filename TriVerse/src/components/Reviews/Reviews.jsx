@@ -1,5 +1,5 @@
 import CardRessenya from './CardRessenya.jsx';
-import CardDonacio from '../CardDonacio.jsx';
+import CardDonacio from './CardDonacio.jsx';
 import { useState, useEffect } from 'react';
 import AfegirReview from '../Reviews/AfegirReview.jsx';
 
@@ -52,12 +52,12 @@ function Reviews() {
                     {objects.map((obj, index) =>(
                     <div className="div-descripcio">
                         <h1 className="titol-review" key={index}>{obj.title}</h1>
-                        <p key={index}>{obj.sinopsis}</p>
-                        <p key={index}>Plataforma: {obj.platform}</p>
-                        <p key={index}>Tipus: {obj.type}</p>
+                        <p key={index} className="img-review">{obj.img_url}</p>
+                        <p key={index} className="sinopsis">{obj.sinopsis}</p>
+                        <p key={index} className="plataforma"><b>Plataforma:</b> {obj.platform}</p>
+                        <p key={index} className="tipus"><b>Tipus:</b> {obj.type}</p>
                         <div className="div-botons-review">
                             <button className="add-button" onClick={()=> setIsOpen(true)} >Afegir review</button>
-
                             <button>Afegir donació</button>
                         </div>
                         
@@ -87,27 +87,6 @@ function Reviews() {
     )
 }
 
-/*const overlayStyle = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "grey",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-};
-
-const modalStyle = {
-    background: "white",
-    padding: "20px",
-    borderRadius: "8px",
-    width: "300px",
-    textAlign: "center",
-    boxShadow: "0 5px 15px rgba(0,0,0,0.3)"
-
-}*/
 
 
 
