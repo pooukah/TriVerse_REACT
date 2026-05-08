@@ -8,7 +8,7 @@ function CardRessenya() {
             try {
                 const response = await fetch(url, { method: "GET" });
                 if(response.ok) {
-                    console.log("La consulta ha anata bé");
+                    console.log("La consulta ha anat bé");
                 } else {
                     console.log("La consulta a tingut algun error");
                     throw new Error(
