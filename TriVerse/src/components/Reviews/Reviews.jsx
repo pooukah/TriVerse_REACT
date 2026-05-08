@@ -9,6 +9,10 @@ function Reviews() {
         window.location.assign("/afegirReview");
     }
 
+    const afegirDonacio = () => {
+        window.location.assign("/afegirDonacio");
+    }
+
     const [isOpen, setIsOpen] = useState(false);
     const [objects, setObjects] = useState([]);
         
@@ -58,7 +62,7 @@ function Reviews() {
                         <p key={index} className="tipus"><b>Tipus:</b> {obj.type}</p>
                         <div className="div-botons-review">
                             <button className="add-button" onClick={()=> setIsOpen(true)} >Afegir review</button>
-                            <button>Afegir donació</button>
+                            <button onClick={afegirDonacio}>Afegir donació</button>
                         </div>
                         
                     </div>
@@ -75,12 +79,9 @@ function Reviews() {
 
                 <section className="ressenyes-container">
                     <CardRessenya />
-                </section>
-                <section className="donacions-container">
                     <CardDonacio />
-                    <CardDonacio />
-
                 </section>
+               
             </div>
         </div>
 

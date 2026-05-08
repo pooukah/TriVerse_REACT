@@ -10,6 +10,7 @@ import Home from './components/home/Home.jsx';
 import ResetPassword from './components/Profile/ResetPassword.jsx';
 import Reviews from './components/Reviews/Reviews.jsx';
 import Perfil from './components/Profile/Perfil.jsx';
+import AfegirDonacio from './components/Reviews/AfegirDonacio.jsx';
 
 function Games() {
   return <MediaPage title="Videojuegos" data={[]} />;
@@ -41,6 +42,7 @@ function App(){
           <Route path="/videojuegos" element={<Games />} />
           <Route path="/peliculas" element={<Movies />} />
           <Route path="/libros" element={<Books />} />
+          <Route path="/afegirDonacio" element={<AfegirDonacio />} />
         </Routes>
       <Footer/>
     </div>
