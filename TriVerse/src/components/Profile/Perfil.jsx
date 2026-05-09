@@ -11,9 +11,19 @@ function Perfil() {
     const [profileData, setProfileData] = useState([]);
         
         async function getProfileData() {
-            const url = `http://127.0.0.1:8000/api/profile/${id}/`;
-            try {
-                const response = await fetch(url, { method: "GET" });
+            const url = `http://127.0.0.1:8000/profile/`;
+        const token = document.cookie
+                .split('; ')
+                .find(row => row.startsWith('token='))
+                ?.split('=')[1];
+                try {
+                const response = await fetch(url, { 
+                    method: "GET" ,
+                    headers: {
+                        "Authorization": `Bearer ${token}`,
+                        "Content-Type": "application/json"
+                     }
+                });
                 if(response.ok) {
                     console.log("La consulta ha anata bé");
                 } else {
@@ -47,15 +57,29 @@ function Perfil() {
                         <div className="div-imatge-perfil"></div>
                         <button className="boto-pujar-img">Pujar</button>
                     </div>
-                    {profileData.map((data) =>(
-                        <ul className="dades-perfil">
-                            <li><b>Nom:</b> {data.name}</li>
-                            <li><b>Cognoms:</b> {data.surname}</li>
-                            <li><b>Correu electrònic:</b> {data.email}</li>
-                            <li><b>Nom d'usuari:</b> {data.username}</li>
-                            <li><b>Contrasenya:</b> {data.password}<img src={edit_icon} className="icona-editar" onClick={resetPassword} /></li>
-                        </ul>
-                    ))}                  
+                {profileData ? (
+                    <ul className="dades-perfil">
+                        <li>
+                            <b>Nom d'usuari:</b> {profileData.username}
+                        </li>
+                        <li>
+                            <b>Correu electrònic:</b> {profileData.email}
+                        </li>
+                        <li>
+                            <b>Nom:</b> {profileData.first_name || profileData.name}
+                        </li>
+                        <li>
+                            <b>Cognoms:</b> {profileData.last_name || profileData.surname}
+                        </li>
+                        <li>
+                        <button className="boto-reset-password" onClick={resetPassword}>
+                                Canviar contrasenya
+                        </button>                        
+                        </li>
+                    </ul>
+                ) : (
+                    <p>Carregant dades...</p>
+                )}                  
                 </div>
             </div>
         </div>
