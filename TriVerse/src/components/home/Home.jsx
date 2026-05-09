@@ -1,49 +1,65 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import './Home.css';
 import MediaCard from '../mediacard/MediaCard';
 
 const Home = ({title, data}) =>{
-     const novedades = data && data.length > 0 ? data : [
-        {title: "Juego 1", rating: "9.0", image: "https://picsum.photos/id/237/200/300"},
-        {title: "Juego 2", rating: "8.5", image: "https://picsum.photos/200/300?grayscale"}
-    ];
-    
-    const mejoresValoradas = data && data.length > 0 ? data : [
-        {title: "Juego 3", rating: "9.5", image: "https://picsum.photos/seed/picsum/200/300"},
-        {title: "Juego 4", rating: "9.0", image: "https://picsum.photos/200/300/?blur"}
-    ];
-    
-    const videojuegos = [
-        {title: "Zelda", rating: "9.8", image: "https://picsum.photos/seed/zelda/200/300"},
-        {title: "Mario", rating: "9.0", image: "https://picsum.photos/seed/mario/200/300"},
-        {title: "Fortnite", rating: "7.5", image: "https://picsum.photos/seed/fortnite/200/300"}
-    ];
-     const peliculas = [
-        {title: "Inception", rating: "9.0", image: "https://picsum.photos/seed/inception/200/300"},
-        {title: "The Matrix", rating: "8.5", image: "https://picsum.photos/seed/matrix/200/300"}
-    ];
-    
-    const libros = [
-        {title: "El Quijote", rating: "9.5", image: "https://picsum.photos/seed/quijote/200/300"},
-        {title: "Cien años", rating: "9.0", image: "https://picsum.photos/seed/cien/200/300"}
-    ];
+    const [novedades, setNovedades] = useState([]);
+    const [mejorValoradas, setMejorValoradas] = useState([]);
+    const [videojuegos, setVideojuegos] = useState([]);
+    const [peliculas, setPeliculas] = useState([]);
+    const [libros, setLibros] = useState([]);
+
+    async function getAll(){
+        const url = "http://127.0.0.1:8000/api/object/";
+
+        try{
+            const response = await fetch(url, {method: "GET"});
+
+            if(!response.ok){
+                throw new Error("Error", response.status)
+            }
+
+            const data = await response.json();
+            console.log(data);
+
+            const games = data.filter(item => item.type === "Game");
+            const movies = data.filter(item => item.type === "Movie");
+            const books = data.filter(item => item.type === "Book");
+
+            const estrellitas = [...data].sort((a, b) => b.rating - a.rating);
+            const nuevo = [...data].reverse().slice(0, 2);
+
+            setNovedades(nuevo);
+            setMejorValoradas(estrellitas);
+            setVideojuegos(games);
+            setPeliculas(movies);
+            setLibros(books);
+        }catch(e){
+            console.log("error: ", e);
+        }
+    }
+
+    useEffect(() => {
+        getAll();
+    }, []);
+
     return(
         <div className='home'>
-            <h1 className='page-title'>{title || "HOME"}</h1>
+            <h1 className='page-title'>{"HOME"}</h1>
 
             <div className='section'>
                 <h2 className='section-title'>Novedades</h2>
                 <div className='cards-grid'>
                     {novedades.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.image}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
                     ))}
                 </div>
             </div>
             <div className='section'>
                 <h2 className='section-title'>Mejor valoradas</h2>
                 <div className='cards-grid'>
-                    {mejoresValoradas.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.image}/>
+                    {mejorValoradas.map((item, index) =>(
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
                     ))}
                 </div>
             </div>
@@ -52,7 +68,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Videojuegos</h2>
                 <div className='cards-grid'>
                     {videojuegos.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.image}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
                     ))}
                 </div>
             </div>
@@ -61,7 +77,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Películas</h2>
                 <div className='cards-grid'>
                     {peliculas.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.image}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
                     ))}
                 </div>
             </div>
@@ -69,7 +85,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Libros</h2>
                 <div className='cards-grid'>
                     {libros.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.image}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
                     ))}
                 </div>
             </div>
