@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [logged, setLogged] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
+  // Estado para controlar el despliegue del menú
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     setLogged(estaLogueado());
@@ -31,12 +33,27 @@ const Navbar = () => {
           
 
         {logged ? (
-          <>
-            <button className="btn" onClick={() => window.location.href='/perfil/me'}>Mi Perfil</button>
-            <button className="btn" onClick={handleLogout} style={{color: '#ff4b4b'}}>Logout</button>
-          </>
+          <div className="profile-dropdown-container">
+            <button 
+              className="btn btn-profile" 
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+            >
+              Mi Cuenta <span className="arrow">{dropdownOpen ? '▲' : '▼'}</span>
+            </button>
+
+            {dropdownOpen && (
+              <div className="dropdown-list">
+                <div className="dropdown-item" onClick={() => window.location.href='/perfil'}>
+                   Mi Perfil
+                </div>
+                <div className="dropdown-item logout-item" onClick={handleLogout}>
+                  Logout
+                </div>
+              </div>
+            )}
+          </div>
         ) : (
-          <button className="btn" onClick={() => setShowAuthModal(true)}>Login / Registro</button>
+          <button className="btn" onClick={() => setShowAuthModal(true)}>Registro</button>
         )}
       </div>
 

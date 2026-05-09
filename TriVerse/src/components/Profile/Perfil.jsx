@@ -13,17 +13,9 @@ function Perfil() {
     const [error, setError] = useState(null);
         
         async function getProfileData() {
-           
-        const url = "http://127.0.0.1:8000/api/profile/?format=json";
+            const url = `http://127.0.0.1:8000/api/profile/${id}/`;
             try {
-                const response = await fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    credentials: "include"
-
-                 });
+                const response = await fetch(url, { method: "GET" });
                 if(response.ok) {
                     console.log("La consulta ha anat bé");
                 } else {
@@ -57,12 +49,15 @@ function Perfil() {
                         <div className="div-imatge-perfil"></div>
                         <button className="boto-pujar-img">Pujar</button>
                     </div>
-                    {profileData && (
+                    {profileData.map((data) =>(
                         <ul className="dades-perfil">
-                            <li><b>Nom:</b> {profileData.username}</li>
-                            
+                            <li><b>Nom:</b> {data.name}</li>
+                            <li><b>Cognoms:</b> {data.surname}</li>
+                            <li><b>Correu electrònic:</b> {data.email}</li>
+                            <li><b>Nom d'usuari:</b> {data.username}</li>
+                            <li><b>Contrasenya:</b> {data.password}<img src={edit_icon} className="icona-editar" onClick={resetPassword} /></li>
                         </ul>
-                    )}    
+                    ))}                  
                 </div>
             </div>
         </div>

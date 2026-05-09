@@ -64,6 +64,7 @@ function Reviews() {
                         <div className="div-botons-review">
                             <button className="add-button" onClick={()=> setIsOpen(true)} >Afegir review</button>
                             <button onClick={afegirDonacio}>Afegir donació</button>
+
                         </div>
                         
                     </div>
