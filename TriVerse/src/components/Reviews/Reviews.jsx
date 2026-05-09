@@ -60,6 +60,7 @@ function Reviews() {
                         <p key={index} className="sinopsis">{obj.sinopsis}</p>
                         <p key={index} className="plataforma"><b>Plataforma:</b> {obj.platform}</p>
                         <p key={index} className="tipus"><b>Tipus:</b> {obj.type}</p>
+                        <p key={index} className="rating"><b>Rating:</b> {obj.rating}</p>
                         <div className="div-botons-review">
                             <button className="add-button" onClick={()=> setIsOpen(true)} >Afegir review</button>
                             <button onClick={afegirDonacio}>Afegir donació</button>
