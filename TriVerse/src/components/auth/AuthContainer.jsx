@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import './auth.css'; 
 
-const AuthContainer = ({ onSuccess }) => {
+const AuthContainer = ({ onSuccess, onClose }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
+
+  useEffect(() => {
+    setUsername('');
+    setPassword('');
+    setEmail('');
+    setName('');
+    setSurname('');
+  }, [isLogin]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,8 +35,8 @@ const AuthContainer = ({ onSuccess }) => {
           const fecha = new Date();
           fecha.setTime(fecha.getTime() + (1 * 24 * 60 * 60 * 1000));
           document.cookie = `token=${data.token}; expires=${fecha.toUTCString()}; path=/; SameSite=Lax`;
-          onSuccess(); // Cierra el modal
-          window.location.reload(); // Recarga para actualizar Navbar
+          onSuccess();
+          window.location.reload();
         } else {
           alert("¡Registrado con éxito!");
           setIsLogin(true);
@@ -41,23 +50,77 @@ const AuthContainer = ({ onSuccess }) => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="tabs">
-        <button className={isLogin ? 'active' : ''} onClick={() => setIsLogin(true)}>LOGIN</button>
-        <button className={!isLogin ? 'active' : ''} onClick={() => setIsLogin(false)}>REGISTRO</button>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <button className="close-btn" onClick={onClose}>&times;</button>
+        
+        <div className="tabs">
+          <button 
+            className={isLogin ? 'active' : ''} 
+            onClick={() => setIsLogin(true)}
+          >
+            LOGIN
+          </button>
+          <button 
+            className={!isLogin ? 'active' : ''} 
+            onClick={() => setIsLogin(false)}
+          >
+            REGISTRO
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          <input 
+            className="auth-input"
+            type="text" 
+            placeholder="Username" 
+            value={username}
+            onChange={(e) => setUsername(e.target.value)} 
+            required 
+          />
+          <input 
+            className="auth-input"
+            type="password" 
+            placeholder="Password" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)} 
+            required 
+          />
+          
+          {!isLogin && (
+            <>
+              <input 
+                className="auth-input"
+                type="email" 
+                placeholder="Email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+                required 
+              />
+              <input 
+                className="auth-input"
+                type="text" 
+                placeholder="Nombre" 
+                value={name}
+                onChange={(e) => setName(e.target.value)} 
+                required 
+              />
+              <input 
+                className="auth-input"
+                type="text" 
+                placeholder="Apellido" 
+                value={surname}
+                onChange={(e) => setSurname(e.target.value)} 
+                required 
+              />
+            </>
+          )}
+          
+          <button type="submit" className="btn-yellow">
+            {isLogin ? 'Entrar' : 'Crear Usuario'}
+          </button>
+        </form>
       </div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" onChange={(e) => setUsername(e.target.value)} required />
-        <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} required />
-        {!isLogin && (
-          <>
-            <input type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} required />
-            <input type="text" placeholder="Nombre" onChange={(e) => setName(e.target.value)} required />
-            <input type="text" placeholder="Apellido" onChange={(e) => setSurname(e.target.value)} required />
-          </>
-        )}
-        <button type="submit">{isLogin ? 'Entrar' : 'Crear Usuario'}</button>
-      </form>
     </div>
   );
 };
