@@ -8,14 +8,24 @@ function Perfil() {
         window.location.assign("/resetPassword");
     }
 
-    const [profileData, setProfileData] = useState([]);
+    const [profileData, setProfileData] = useState(null);
+    const [loading, setLoading] = useState(null);
+    const [error, setError] = useState(null);
         
         async function getProfileData() {
-            const url = `http://127.0.0.1:8000/api/profile/${id}/`;
+           
+        const url = "http://127.0.0.1:8000/api/profile/?format=json";
             try {
-                const response = await fetch(url, { method: "GET" });
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: "include"
+
+                 });
                 if(response.ok) {
-                    console.log("La consulta ha anata bé");
+                    console.log("La consulta ha anat bé");
                 } else {
                     console.log("La consulta a tingut algun error");
                     throw new Error(
@@ -47,15 +57,12 @@ function Perfil() {
                         <div className="div-imatge-perfil"></div>
                         <button className="boto-pujar-img">Pujar</button>
                     </div>
-                    {profileData.map((data) =>(
+                    {profileData && (
                         <ul className="dades-perfil">
-                            <li><b>Nom:</b> {data.name}</li>
-                            <li><b>Cognoms:</b> {data.surname}</li>
-                            <li><b>Correu electrònic:</b> {data.email}</li>
-                            <li><b>Nom d'usuari:</b> {data.username}</li>
-                            <li><b>Contrasenya:</b> {data.password}<img src={edit_icon} className="icona-editar" onClick={resetPassword} /></li>
+                            <li><b>Nom:</b> {profileData.username}</li>
+                            
                         </ul>
-                    ))}                  
+                    )}    
                 </div>
             </div>
         </div>

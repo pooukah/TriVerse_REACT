@@ -197,8 +197,12 @@ body {
   grid-area: el5;
 }
 
-.div-botons-review {
+.rating {
   grid-area: el6;
+}
+
+.div-botons-review {
+  grid-area: el7;
   display: flex;
   flex-direction: row;
   gap: 50px;
@@ -210,7 +214,8 @@ body {
                       'el2 el3'
                       'el2 el4'
                       'el2 el5'
-                      'el2 el6';
+                      'el2 el6'
+                      'el2 el7';
   grid-template-columns: auto auto;
   padding: 25px;
   gap: 30px 200px;
