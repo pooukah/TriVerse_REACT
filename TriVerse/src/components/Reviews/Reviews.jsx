@@ -1,97 +1,108 @@
 import CardRessenya from './CardRessenya.jsx';
 import CardDonacio from './CardDonacio.jsx';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import AfegirReview from '../Reviews/AfegirReview.jsx';
+import './Reviews.css';
+const API_URL = "http://127.0.0.1:8000";
 
 function Reviews() {
+    const { id } = useParams();
+    const [obj, setObj] = useState(null); 
+    const [isOpen, setIsOpen] = useState(false);
 
-    const afegirReview = () => {
-        window.location.assign("/afegirReview");
-    }
+    // 1. Definimos la función para la imagen
+    const getFullImageUrl = (path) => path ? `${API_URL}${path}` : `${API_URL}/media/objects/avatar_upload.jpg`;
 
     const afegirDonacio = () => {
         window.location.assign("/afegirDonacio");
     }
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [objects, setObjects] = useState([]);
-        
-        async function getObject() {
-            const url = "http://127.0.0.1:8000/api/object/?format=json";
-            try {
-                const response = await fetch(url, { method: "GET" });
-                if(response.ok) {
-                    console.log("La consulta ha anata bé");
-                } else {
-                    console.log("La consulta a tingut algun error");
-                    throw new Error(
-                        `Error: ${response.status} - ${response.statusText}`
-                    );
-                }
+    async function getObject() {
+        // 2. IMPORTANTE: Añade la barra final '/' para que Django no de error
+        const url = `${API_URL}/api/object/${id}/`; 
+        try {
+            const response = await fetch(url, { method: "GET" });
+            if (response.ok) {
                 const data = await response.json();
-                console.log(data);
-                setObjects(data);
-                
-            } catch (error) {
-                console.log(error);
-            } finally {
-                console.log("Final de la consulta");
+                console.log("Datos recibidos:", data);
+                setObj(data); 
+            } else {
+                console.error("Error: No se encontró la película");
             }
+        } catch (error) {
+            console.log("Error de red:", error);
         }
-    
-        useEffect(() => {
-            getObject()
-        },  [])
-        
-    
+    }
+
+    useEffect(() => {
+        if (id) {
+            getObject();
+        }
+    }, [id]);
+
+    // 3. Mientras no hay datos, mostramos cargando
+    if (!obj) {
+        return <div style={{padding: "20px"}}>Carregant dades de la pel·lícula...</div>;
+    }
+
     return (
-        <div>
-            <div className="container-principal-reviews">
-                {objects.map((obj) => (
-                <div className="div-reviews">
-                </div>
-                ))}
-                
-                <div className="container-descripcio">
-                    {objects.map((obj, index) =>(
-                    <div className="div-descripcio">
-                        <h1 className="titol-review" key={index}>{obj.title}</h1>
-                        <p key={index} className="img-review">{obj.img_url}</p>
-                        <p key={index} className="sinopsis">{obj.sinopsis}</p>
-                        <p key={index} className="plataforma"><b>Plataforma:</b> {obj.platform}</p>
-                        <p key={index} className="tipus"><b>Tipus:</b> {obj.type}</p>
-                        <p key={index} className="rating"><b>Rating:</b> {obj.rating}</p>
-                        <div className="div-botons-review">
-                            <button className="add-button" onClick={()=> setIsOpen(true)} >Afegir review</button>
-                            <button onClick={afegirDonacio}>Afegir donació</button>
-
-                        </div>
-                        
+        <div className="container-principal-reviews">
+            <div className="container-descripcio">
+                <div className="div-descripcio">
+                    <h1 className="titol-review">{obj.title}</h1>
+                    
+                    <div className="img-review">
+                        <img 
+                            src={getFullImageUrl(obj.img_url)} 
+                            alt={obj.title} 
+                            style={{ width: '200px', borderRadius: '8px' }} 
+                        />
                     </div>
-                    ))}
-                </div>
-                {isOpen && <div>
-                    <AfegirReview /> 
-                    </div>
-                }
-                <div className="subtitols-reviews">
-                    <h1 className="subtitol-review">Totes les reviews</h1>
-                    <h1 className="subtitol-donacions">Donacions</h1>
-                </div>
 
-                <section className="ressenyes-container">
-                    <CardRessenya />
-                    <CardDonacio />
-                </section>
-               
+                    <p className="sinopsis">{obj.sinopsis || "Sense sinopsi disponible"}</p>
+                    
+                    <p className="plataforma">
+                        <b>Plataforma:</b> {obj.platform}
+                    </p>
+                    
+                    <p className="tipus">
+                        <b>Tipus:</b> {obj.type}
+                    </p>
+                    
+                    <p className="rating">
+                        <b>Rating:</b> {obj.rating} / 10
+                    </p>
+                    
+                    <div className="div-botons-review">
+                        <button className="add-button" onClick={() => setIsOpen(true)}>
+                            Afegir review
+                        </button>
+                        <button onClick={afegirDonacio}>
+                            Afegir donació
+                        </button>
+                    </div>
+                </div>
+            </div> 
+
+            {isOpen && (
+                <div className="modal-afegir-review">
+                    <AfegirReview />
+                    <button onClick={() => setIsOpen(false)} style={{marginTop: '10px'}}>Tancar</button>
+                </div>
+            )}
+
+            <div className="subtitols-reviews">
+                <h1 className="subtitol-review">Totes les reviews</h1>
+                <h1 className="subtitol-donacions">Donacions</h1>
             </div>
+
+            <section className="ressenyes-container">
+                <CardRessenya objectId={id} />
+                <CardDonacio objectId={id} />
+            </section>
         </div>
-
-    )
+    );
 }
-
-
-
-
 
 export default Reviews;

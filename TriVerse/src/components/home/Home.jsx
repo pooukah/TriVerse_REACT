@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react';
 import './Home.css';
 import MediaCard from '../mediacard/MediaCard';
 
+const API_URL = "http://127.0.0.1:8000";
+
 const Home = ({title, data}) =>{
     const [novedades, setNovedades] = useState([]);
     const [mejorValoradas, setMejorValoradas] = useState([]);
@@ -10,7 +12,7 @@ const Home = ({title, data}) =>{
     const [libros, setLibros] = useState([]);
 
     async function getAll(){
-        const url = "http://127.0.0.1:8000/api/object/";
+        const url = `${API_URL}/api/object/`;
 
         try{
             const response = await fetch(url, {method: "GET"});
@@ -42,7 +44,8 @@ const Home = ({title, data}) =>{
     useEffect(() => {
         getAll();
     }, []);
-
+    const getFullImageUrl = (path) => path ? `${API_URL}${path}` : 'objects/avatar_upload.jpg';
+    
     return(
         <div className='home'>
             <h1 className='page-title'>{"HOME"}</h1>
@@ -51,7 +54,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Novedades</h2>
                 <div className='cards-grid'>
                     {novedades.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>
@@ -59,7 +62,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Mejor valoradas</h2>
                 <div className='cards-grid'>
                     {mejorValoradas.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>

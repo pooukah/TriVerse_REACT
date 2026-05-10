@@ -18,37 +18,46 @@ const AuthContainer = ({ onSuccess, onClose }) => {
   }, [isLogin]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    let url = isLogin ? 'http://127.0.0.1:8000/api/login/' : 'http://127.0.0.1:8000/api/register/';
-    const datos = { username, password, email, name, surname };
+  e.preventDefault();
+  
+  // 1. Determinar la URL
+  const url = isLogin ? 'http://127.0.0.1:8000/api/login/' : 'http://127.0.0.1:8000/api/register/';
+  
+  // 2. Filtrar los datos: SOLO enviar lo que el serializer espera
+  const datos = isLogin 
+    ? { username, password } 
+    : { username, password, email, name, surname };
 
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datos)
-      });
-      const data = await response.json();
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(datos)
+    });
+    
+    const data = await response.json();
 
-      if (response.ok) {
-        if (isLogin) {
-          const fecha = new Date();
-          fecha.setTime(fecha.getTime() + (1 * 24 * 60 * 60 * 1000));
-          document.cookie = `token=${data.token}; expires=${fecha.toUTCString()}; path=/; SameSite=Lax`;
-          onSuccess();
-          window.location.reload();
-        } else {
-          alert("¡Registrado con éxito!");
-          setIsLogin(true);
-        }
+    if (response.ok) {
+      if (isLogin) {
+        // Guardar cookie y refrescar
+        const fecha = new Date();
+        fecha.setTime(fecha.getTime() + (24 * 60 * 60 * 1000));
+        document.cookie = `token=${data.token}; expires=${fecha.toUTCString()}; path=/; SameSite=Lax`;
+        onSuccess();
+        window.location.reload();
       } else {
-        alert("Error: Revisa los datos");
+        alert("¡Registrado con éxito!");
+        setIsLogin(true);
       }
-    } catch (error) {
-      console.error("Error:", error);
+    } else {
+      // 3. LOG DE ERRORES (Crucial para saber por qué da 400)
+      console.error("Errores del servidor:", data);
+      alert("Error: " + JSON.stringify(data));
     }
-  };
-
+  } catch (error) {
+    console.error("Error de conexión:", error);
+  }
+};
   return (
     <div className="modal-overlay">
       <div className="modal-content">
