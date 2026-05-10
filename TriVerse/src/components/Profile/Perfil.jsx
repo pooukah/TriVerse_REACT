@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import edit_icon from '../../imatges/edit_icon.png';
 
-function Perfil() {
-    // Dades simulades de l'usuari
-    
+function Perfil() {    
     const resetPassword = () => {
         window.location.assign("/resetPassword");
     }

@@ -3,7 +3,6 @@
 .container-principal-reviews {
     max-width: 1200px;
     margin: 0 auto;
-    /* Ajusta este padding si 600px es demasiado, normalmente con 100px basta */
     padding: 600px 20px 40px 20px; 
     font-family: 'Segoe UI', Roboto, sans-serif;
     color: #333;
@@ -17,10 +16,9 @@
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     margin-bottom: 50px;
-    align-items: center; /* Centra la imagen verticalmente respecto al texto */
+    align-items: center; 
 }
 
-/* CONTENEDOR DE IMAGEN: Sin fondos, sin bordes, solo centrado */
 .img-review {
     display: flex;
     justify-content: center;
@@ -30,15 +28,14 @@
     border: none;
 }
 
-/* LA IMAGEN: Solo la imagen pelada */
 .img-review img {
-    width: 280px;         /* Ajusta el ancho a tu gusto */
-    height: auto;        /* Mantiene la proporción original sin estirar */
+    width: 280px;         
+    height: auto;      
     display: block;
-    border: none;        /* Quita cualquier borde */
-    background: none;    /* Quita cualquier fondo */
-    box-shadow: none;    /* Quita la sombra si no la quieres */
-    border-radius: 8px;  /* Un poco de redondeado suave opcional */
+    border: none;      
+    background: none;   
+    box-shadow: none;    
+    border-radius: 8px;  
 }
 
 .div-descripcio {
@@ -64,7 +61,6 @@
     margin-right: 8px;
 }
 
-/* Botones */
 .div-botons-review {
     display: flex;
     gap: 15px;
@@ -84,7 +80,6 @@
     color: white;
 }
 
-/* Sección inferior */
 .subtitols-reviews {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -99,7 +94,6 @@
     gap: 30px;
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
     .container-descripcio {
         flex-direction: column;

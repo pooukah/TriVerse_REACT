@@ -44,13 +44,7 @@ const Home = ({title, data}) =>{
     useEffect(() => {
         getAll();
     }, []);
-    const getFullImageUrl = (path) => {
-        if (path.startsWith('http://') || path.startsWith('https://')) {
-            return path;
-        }
-
-        return `${API_URL}/media/${path}`;
-    }
+    const getFullImageUrl = (path) => path ? `${API_URL}${path}` : 'media/objects/avatar_upload.jpg';
     
     return(
         <div className='home'>
