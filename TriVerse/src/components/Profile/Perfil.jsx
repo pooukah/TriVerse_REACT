@@ -53,10 +53,6 @@ function Perfil() {
             <div className="container-perfil">
                 <div className="div-perfil">
                     <h1 className="titol-perfil">Perfil</h1>
-                    <div className="container-img-perfil">
-                        <div className="div-imatge-perfil"></div>
-                        <button className="boto-pujar-img">Pujar</button>
-                    </div>
                 {profileData ? (
                     <ul className="dades-perfil">
                         <li>
@@ -71,6 +67,7 @@ function Perfil() {
                         <li>
                             <b>Cognoms:</b> {profileData.last_name || profileData.surname}
                         </li>
+    
                         <li>
                         <button className="boto-reset-password" onClick={resetPassword}>
                                 Canviar contrasenya
