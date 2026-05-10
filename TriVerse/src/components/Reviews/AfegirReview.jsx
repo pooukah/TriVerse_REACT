@@ -1,8 +1,9 @@
-import { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-function AfegirReview() {
-    const { id } = useParams();
+function AfegirReview({ id: propId }) {
+    const { id: paramsId } = useParams();
+    const id = propId || paramsId;
     const navigate = useNavigate();
 
     const [description, setDescription] = useState("");
@@ -21,6 +22,8 @@ function AfegirReview() {
             .find(row => row.startsWith('token='))
             ?.split('=')[1];
 
+        console.log("Token recuperat:", token ? token.substring(0, 20) + "..." : "NO TROBAT");
+
         const reviewData = {
             description: description,
             rating: parseFloat(rating),
@@ -31,9 +34,9 @@ function AfegirReview() {
             const response = await fetch("http://127.0.0.1:8000/api/createReview/", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}` // Enviamos el token recuperado
+                    "Content-Type": "application/json"
                 },
+                credentials: 'include',
                 body: JSON.stringify(reviewData)
             });
 
@@ -41,12 +44,15 @@ function AfegirReview() {
                 console.log("Review creada correctament");
                 navigate(0); 
             } else {
-                const errorData = await response.json();
-                console.error("Error 403 o similar:", errorData);
-                alert("Error: No tens permís o el token ha caducat.");
+                const text = await response.text();
+                console.error("Error", response.status, ":", text);
+                alert(response.status === 401 || response.status === 403
+                    ? "Error: No tens permís o el token ha caducat."
+                    : `Error del servidor (${response.status})`);
             }
         } catch (error) {
             console.log("Error de xarxa", error);
+            alert("Error de connexió: No s'ha pogut enviar la review.");
         }
     };
 

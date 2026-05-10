@@ -1,6 +1,7 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import './Home.css';
 import MediaCard from '../mediacard/MediaCard';
+import { Link } from 'react-router-dom';
 
 const API_URL = "http://127.0.0.1:8000";
 
@@ -54,7 +55,9 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Novedades</h2>
                 <div className='cards-grid'>
                     {novedades.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        <Link to={`/reviews/${item.id}`} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -62,7 +65,9 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Mejor valoradas</h2>
                 <div className='cards-grid'>
                     {mejorValoradas.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        <Link to={`/reviews/${item.id}`} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -71,7 +76,9 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Videojuegos</h2>
                 <div className='cards-grid'>
                     {videojuegos.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        <Link to={`/reviews/${item.id}`} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        </Link>
                     ))}
                     
                 </div>
@@ -81,7 +88,9 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Películas</h2>
                 <div className='cards-grid'>
                     {peliculas.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        <Link to={`/reviews/${item.id}`} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -89,7 +98,9 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Libros</h2>
                 <div className='cards-grid'>
                     {libros.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        <Link to={`/reviews/${item.id}`} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
+                        </Link>
                     ))}
                 </div>
             </div>

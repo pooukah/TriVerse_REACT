@@ -32,11 +32,11 @@ function CardDonacio() {
     }, [])
     return (
         <div className="container-donacio">
-            {donation.map((donation)=> (
-            <ul className="ul-donacions">
-                <li>Nom d'usuari: {donation.username}</li>
-                <li>Correu electrònic: {donation.email}</li>
-                <li>Telèfon: {donation.phone_number}</li>
+            {donation.map((d, i)=> (
+            <ul key={i} className="ul-donacions">
+                <li>Nom d'usuari: {d.username}</li>
+                <li>Correu electrònic: {d.email}</li>
+                <li>Telèfon: {d.phone_number}</li>
             </ul>
             ))}
         </div>

@@ -85,7 +85,7 @@ function Reviews() {
 
             {isOpen && (
                 <div className="modal-afegir-review">
-                    <AfegirReview />
+                    <AfegirReview id={id} />
                     <button onClick={() => setIsOpen(false)} style={{marginTop: '10px'}}>Tancar</button>
                 </div>
             )}
