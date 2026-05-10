@@ -34,6 +34,8 @@ function App(){
         <Route path="/" element={<Home />} />
         <Route path="/reviews/:id" element={<Reviews />} />  
       < Route path="/afegirReview" element={<AfegirReview />} />
+        <Route path="/reviews/:id" element={<Reviews />} />
+        <Route path="/afegirReview" element={<AfegirReview />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
         <Route path="/videojuegos" element={<Games />} />
