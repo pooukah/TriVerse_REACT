@@ -62,7 +62,9 @@ const MediaPage = ({title, type}) =>{
                 <h2 className='section-title'>Mejor Valoradas</h2>
                 <div className='cards-grid'>
                     {mejorValoradas.map((item, index) =>(
-                        <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)} />
+                        <Link to={`/reviews/${item.id}`} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)} />
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -71,7 +73,9 @@ const MediaPage = ({title, type}) =>{
                 <h2 className='section-title'>Todas</h2>
                 <div className='cards-grid'>
                     {todas.map((item, index) =>(
-                        <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)} />
+                        <Link to={`/reviews/${item.id}`} key={index} style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <MediaCard title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)} />
+                        </Link>
                     ))}
                 </div>
             </div>
