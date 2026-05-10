@@ -16,7 +16,6 @@ function AfegirReview() {
             return;
         }
 
-        // Lógica para sacar el token de la cookie (igual que en Perfil)
         const token = document.cookie
             .split('; ')
             .find(row => row.startsWith('token='))
@@ -40,7 +39,7 @@ function AfegirReview() {
 
             if (response.ok) {
                 console.log("Review creada correctament");
-                navigate(0); // Recarga la página actual para mostrar la nueva review
+                navigate(0); 
             } else {
                 const errorData = await response.json();
                 console.error("Error 403 o similar:", errorData);

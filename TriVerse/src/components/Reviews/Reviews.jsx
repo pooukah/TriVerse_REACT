@@ -19,7 +19,6 @@ function Reviews() {
     }
 
     async function getObject() {
-        // 2. IMPORTANTE: Añade la barra final '/' para que Django no de error
         const url = `${API_URL}/api/object/${id}/`; 
         try {
             const response = await fetch(url, { method: "GET" });
@@ -41,7 +40,6 @@ function Reviews() {
         }
     }, [id]);
 
-    // 3. Mientras no hay datos, mostramos cargando
     if (!obj) {
         return <div style={{padding: "20px"}}>Carregant dades de la pel·lícula...</div>;
     }
