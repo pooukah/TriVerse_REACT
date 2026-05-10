@@ -79,6 +79,7 @@ const Home = ({title, data}) =>{
                     {videojuegos.map((item, index) =>(
                         <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
+                    
                 </div>
             </div>
 

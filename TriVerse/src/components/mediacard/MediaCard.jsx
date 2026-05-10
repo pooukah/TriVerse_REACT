@@ -2,6 +2,7 @@ import React from 'react';
 import './MediaCard.css';
 
 const MediaCard = ({title, rating, image}) =>{
+    
     return(
         <div className="media-card">
             <div className="media-image">
