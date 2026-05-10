@@ -48,7 +48,7 @@ const Home = ({title, data}) =>{
     
     return(
         <div className='home'>
-            <h1 className='page-title'>{"HOME"}</h1>
+            <h1 className='page-title'>{"Home"}</h1>
 
             <div className='section'>
                 <h2 className='section-title'>Novedades</h2>
@@ -71,7 +71,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Videojuegos</h2>
                 <div className='cards-grid'>
                     {videojuegos.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>
@@ -80,7 +80,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Películas</h2>
                 <div className='cards-grid'>
                     {peliculas.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>
@@ -88,7 +88,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Libros</h2>
                 <div className='cards-grid'>
                     {libros.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>

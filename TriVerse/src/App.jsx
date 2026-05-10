@@ -34,7 +34,8 @@ function App(){
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
-            <Route path="/reviews/:id" element={<Reviews />} />            <Route path="/afegirReview" element={<AfegirReview />} />
+            <Route path="/reviews/:id" element={<Reviews />} />            
+            <Route path="/afegirReview" element={<AfegirReview />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/videojuegos" element={<Games />} />
             <Route path="/peliculas" element={<Movies />} />
