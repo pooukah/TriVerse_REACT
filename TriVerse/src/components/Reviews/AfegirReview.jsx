@@ -34,9 +34,9 @@ function AfegirReview({ id: propId }) {
             const response = await fetch("http://127.0.0.1:8000/api/createReview/", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Token ${token}`
+                    "Content-Type": "application/json"
                 },
+                credentials: 'include',
                 body: JSON.stringify(reviewData)
             });
 
