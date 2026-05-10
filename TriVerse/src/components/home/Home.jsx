@@ -2,6 +2,8 @@ import {useState, useEffect} from 'react';
 import './Home.css';
 import MediaCard from '../mediacard/MediaCard';
 
+const API_URL = "http://127.0.0.1:8000";
+
 const Home = ({title, data}) =>{
     const [novedades, setNovedades] = useState([]);
     const [mejorValoradas, setMejorValoradas] = useState([]);
@@ -10,7 +12,7 @@ const Home = ({title, data}) =>{
     const [libros, setLibros] = useState([]);
 
     async function getAll(){
-        const url = "http://127.0.0.1:8000/api/object/";
+        const url = `${API_URL}/api/object/`;
 
         try{
             const response = await fetch(url, {method: "GET"});
@@ -26,7 +28,7 @@ const Home = ({title, data}) =>{
             const movies = data.filter(item => item.type === "Movie");
             const books = data.filter(item => item.type === "Book");
 
-            const estrellitas = [...data].sort((a, b) => b.rating - a.rating);
+            const estrellitas = data.filter(item => item.rating >= 8).sort((a, b) => b.rating - a.rating);
             const nuevo = [...data].reverse().slice(0, 2);
 
             setNovedades(nuevo);
@@ -42,16 +44,23 @@ const Home = ({title, data}) =>{
     useEffect(() => {
         getAll();
     }, []);
+    const getFullImageUrl = (path) => {
+        if (path.startsWith('http://') || path.startsWith('https://')) {
+            return path;
+        }
 
+        return `${API_URL}/media/${path}`;
+    }
+    
     return(
         <div className='home'>
-            <h1 className='page-title'>{"HOME"}</h1>
+            <h1 className='page-title'>{"Home"}</h1>
 
             <div className='section'>
                 <h2 className='section-title'>Novedades</h2>
                 <div className='cards-grid'>
                     {novedades.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>
@@ -59,7 +68,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Mejor valoradas</h2>
                 <div className='cards-grid'>
                     {mejorValoradas.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>
@@ -68,7 +77,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Videojuegos</h2>
                 <div className='cards-grid'>
                     {videojuegos.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>
@@ -77,7 +86,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Películas</h2>
                 <div className='cards-grid'>
                     {peliculas.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>
@@ -85,7 +94,7 @@ const Home = ({title, data}) =>{
                 <h2 className='section-title'>Libros</h2>
                 <div className='cards-grid'>
                     {libros.map((item, index) =>(
-                        <MediaCard key={index} title={item.title} rating={item.rating} image={item.img_url}/>
+                        <MediaCard key={index} title={item.title} rating={item.rating} image={getFullImageUrl(item.img_url)}/>
                     ))}
                 </div>
             </div>

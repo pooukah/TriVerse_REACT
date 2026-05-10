@@ -29,7 +29,7 @@ function App(){
   return (
     <div>
       <Navbar />
-
+      <div className="cards-container"></div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reviews" element={<Reviews />} />
