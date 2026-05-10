@@ -25,7 +25,7 @@ const MediaPage = ({title, type}) =>{
             const data = await response.json();
             console.log(title, data);
 
-            const estrellitas = [...data].sort((a, b) => b.rating - a.rating);
+            const estrellitas = data.filter(item => item.rating >= 8).sort((a, b) => b.rating - a.rating);
             const nuevo = [...data].reverse().slice(0, 2);
             const toas = data;
             

@@ -28,7 +28,7 @@ const Home = ({title, data}) =>{
             const movies = data.filter(item => item.type === "Movie");
             const books = data.filter(item => item.type === "Book");
 
-            const estrellitas = [...data].sort((a, b) => b.rating - a.rating);
+            const estrellitas = data.filter(item => item.rating >= 8).sort((a, b) => b.rating - a.rating);
             const nuevo = [...data].reverse().slice(0, 2);
 
             setNovedades(nuevo);
@@ -44,7 +44,13 @@ const Home = ({title, data}) =>{
     useEffect(() => {
         getAll();
     }, []);
-    const getFullImageUrl = (path) => path ? `${API_URL}${path}` : 'objects/avatar_upload.jpg';
+    const getFullImageUrl = (path) => {
+        if (path.startsWith('http://') || path.startsWith('https://')) {
+            return path;
+        }
+
+        return `${API_URL}/media/${path}`;
+    }
     
     return(
         <div className='home'>
