@@ -78,14 +78,10 @@
   background-color: #5e5e80; 
 }
 
-.close-btn {
-  position: absolute;
+/*.close-btn {
   top: 10px;
-  right: 15px;
-  background: none;
   border: none;
   font-size: 24px;
   cursor: pointer;
-  color: #aaa;
-}
+}*/
 
