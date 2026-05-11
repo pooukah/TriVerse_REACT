@@ -31,10 +31,12 @@ function AfegirReview({ id: propId }) {
         };
 
         try {
+            const token = localStorage.getItem('token');
             const response = await fetch("http://127.0.0.1:8000/api/createReview/", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
                 },
                 credentials: 'include',
                 body: JSON.stringify(reviewData)
