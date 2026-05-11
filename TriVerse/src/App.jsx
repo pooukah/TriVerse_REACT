@@ -1,7 +1,6 @@
 import './App.css';
 import Navbar from './components/navbar/Navbar.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AfegirReview from './components/Reviews/AfegirReview.jsx';
 import Footer from './components/footer/Footer.jsx';
 import { estaLogueado } from './utils'; 
 import MediaCard from './components/mediacard/MediaCard.jsx';
@@ -11,6 +10,8 @@ import Reviews from './components/Reviews/Reviews.jsx';
 import Perfil from './components/Profile/Perfil.jsx';
 import AfegirDonacio from './components/Reviews/AfegirDonacio.jsx';
 import ResetPassword from './components/Profile/ResetPassword.jsx';
+import AfegirReview from './components/Reviews/AfegirReview.jsx';
+
 function Games() {
   return <MediaPage title="Videojuegos" type="Game" />;
 }
@@ -33,7 +34,7 @@ function App(){
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/reviews/:id" element={<Reviews />} />
-        <Route path="/afegirReview/:id" element={<AfegirReview />} />
+        <Route path="/afegirReview/:id/" element={<AfegirReview />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/resetPassword" element={<ResetPassword />} />
         <Route path="/videojuegos" element={<Games />} />

@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function AfegirReview({ id: propId }) {
+function AfegirReview({ id: propId, onClose }) {
     const { id: paramsId } = useParams();
     const id = propId || paramsId;
     const navigate = useNavigate();
@@ -86,7 +86,7 @@ function AfegirReview({ id: propId }) {
                     </div>
 
                     <div className="botons-afegir-review">
-                        <button type="button" onClick={() => navigate(-1)} className="btn-cancel">
+                        <button type="button" onClick={onClose} className="btn-cancel">
                             Cancelar
                         </button>
                         <button type="submit" className="btn-add">

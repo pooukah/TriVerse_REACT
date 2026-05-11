@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import AfegirReview from '../Reviews/AfegirReview.jsx';
 import './Reviews.css';
+
 const API_URL = "http://127.0.0.1:8000";
 
 function Reviews() {
@@ -85,8 +86,7 @@ function Reviews() {
 
             {isOpen && (
                 <div className="modal-afegir-review">
-                    <AfegirReview id={id} />
-                    <button onClick={() => setIsOpen(false)} style={{marginTop: '10px'}}>Tancar</button>
+                    <AfegirReview id={id} onClose={() => setIsOpen(false)} />
                 </div>
             )}
 

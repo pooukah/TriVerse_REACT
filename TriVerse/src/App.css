@@ -379,6 +379,13 @@ body {
 
 }
 
+.close-btn {
+  border-radius: 3px;
+  margin: 100px;
+  background-color: green;
+}
+
+
 .ocultat {
   visibility: hidden;
 }
