@@ -55,15 +55,19 @@ function Perfil() {
                     <ul className="dades-perfil">
                         <li>
                             <b>Nom d'usuari:</b> {profileData.username}
+                            <hr className="linia"/>
                         </li>
                         <li>
                             <b>Correu electrònic:</b> {profileData.email}
+                            <hr className="linia" />
                         </li>
                         <li>
                             <b>Nom:</b> {profileData.first_name || profileData.name}
+                            <hr className="linia" />
                         </li>
                         <li>
                             <b>Cognoms:</b> {profileData.last_name || profileData.surname}
+                            <hr className="linia" />
                         </li>
     
                         <li>

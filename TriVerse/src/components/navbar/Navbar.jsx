@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import { estaLogueado } from '../../utils';
-import Modal from '../auth/Modal';
+import Modal from '../auth/Modal.jsx';
 import AuthContainer from '../auth/AuthContainer';
 import { Link, useNavigate } from 'react-router-dom';
 

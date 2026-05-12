@@ -63,14 +63,17 @@ function Reviews() {
                     
                     <p className="plataforma">
                         <b>Plataforma:</b> {obj.platform}
+                        <hr className="linia-reviews" />
                     </p>
                     
                     <p className="tipus">
                         <b>Tipus:</b> {obj.type}
+                        <hr className="linia-reviews" />
                     </p>
                     
                     <p className="rating">
                         <b>Rating:</b> {obj.rating} / 10
+                        <hr className="linia-reviews" />
                     </p>
                     
                     <div className="div-botons-review">

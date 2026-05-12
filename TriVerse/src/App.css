@@ -173,16 +173,6 @@ body {
   margin: -50px;
 }
 
-.container-descripcio {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-top: -530px;
-  padding: 15px;
-  border: 1px solid black;
-  border-radius: 10px;
-  background-color: rgb(203, 201, 201);
-}
 
 .titol-review {
   grid-area: el1;
@@ -282,9 +272,9 @@ body {
 .container-cardRessenya {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 5px;
-  padding: 5px;
+  padding: 15px;
   width: 500px;
   height: 175px;
   background-color:darkkhaki;
@@ -311,11 +301,11 @@ body {
 
 .ul-donacions {
   list-style-type: none;
-  border: 1px solid black;
+  border: 1px solid white;
   width: 500px;
   height: 175px;
   border-radius: 5px;
-  padding: 5px;
+  padding: 15px;
   background-color:tan;
   margin: 0px;
 }
@@ -332,12 +322,7 @@ body {
   font-size: 35px;
 }
 
-.subtitols-reviews {
-  display: flex;
-  flex-direction: row;
-  gap: 500px;
-  color: white;
-}
+
 
 .overlayStyle {
   display: flex;
@@ -379,12 +364,6 @@ body {
 
 }
 
-.close-btn {
-  border-radius: 3px;
-  margin: 100px;
-  background-color: green;
-}
-
 
 .ocultat {
   visibility: hidden;
@@ -412,7 +391,7 @@ body {
 .botons-afegir-review button {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size: 12px;
-  width: 78px;
+  width: 100px;
   height: 25px;
   border-radius: 5px;
   background-color: aquamarine;
@@ -434,7 +413,6 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin: 95px;
 
 }
 .div-afegir-donacio {
@@ -442,8 +420,8 @@ body {
   flex-direction: column;
   align-items: center;
   border: 1px solid black;
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: 350px;
   padding: 50px;
   gap: 30px;
   border-radius: 5px;
@@ -453,7 +431,7 @@ body {
 .botons-afegir-donacio{
   display: flex;
   flex-direction: row;
-  padding: 70px;
+  padding: 40px;
   gap: 100px;
 }
 
@@ -463,6 +441,7 @@ body {
   border-radius: 5px;
   background-color: aquamarine;
   transition-duration: 0.4s;
+  cursor: pointer;
 }
 
 .botons-afegir-donacio button:hover {
@@ -473,4 +452,13 @@ body {
 .div-afegir-donacio input {
   width: 200px;
   border-radius: 5px;
+}
+
+.linia {
+  border-style: groove;
+}
+
+.linia-reviews {
+  border-style: ridge;
+  border-color: rgb(172, 172, 172);
 }

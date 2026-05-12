@@ -89,7 +89,7 @@ function AfegirReview({ id: propId, onClose }) {
                         <button type="button" onClick={onClose} className="btn-cancel">
                             Cancelar
                         </button>
-                        <button type="submit" className="btn-add">
+                        <button onClick={onClose} type="submit" className="btn-add">
                             Afegir Review
                         </button>
                     </div>
