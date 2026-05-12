@@ -34,9 +34,9 @@ function CardDonacio() {
         <div className="container-donacio">
             {donation.map((d, i)=> (
             <ul key={i} className="ul-donacions">
-                <li>Nom d'usuari: {d.username}</li>
-                <li>Correu electrònic: {d.email}</li>
-                <li>Telèfon: {d.phone_number}</li>
+                <li><b>Nom d'usuari:</b> {d.username}</li>
+                <li><b>Correu electrònic:</b> {d.email}</li>
+                <li><b>Telèfon:</b> {d.phone_number}</li>
             </ul>
             ))}
         </div>

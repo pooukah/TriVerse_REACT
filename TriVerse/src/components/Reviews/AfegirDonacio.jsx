@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 function AfegirDonacio() {
     const tornarPageReviews = () => {
-            window.location.replace("/reviews");
+            window.history.back();
         }
     
         const [username, setUsername] = useState("");
@@ -44,21 +44,21 @@ function AfegirDonacio() {
                 <div className="div-afegir-donacio">
                     <label>
                         Username:
-                        <br />
+                        <hr className="linia" />
                             <input
                                 value={username}
                                 onChange={e => setUsername(e.target.value)}/>
                     </label>
                     <label>
                         Correu electrònic:
-                        <br />
+                        <hr className="linia" />
                         <input
                             value={email}
                             onChange={e => setEmail(e.target.value)}/>
                     </label>
                     <label>
                         Telèfon:
-                        <br />
+                        <hr className="linia" />
                         <input
                             value={phone_number}
                             onChange={e => setPhoneNumber(e.target.value)}/>
