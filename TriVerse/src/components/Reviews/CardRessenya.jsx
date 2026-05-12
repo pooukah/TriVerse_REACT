@@ -31,7 +31,6 @@ function CardRessenya({ objectId }) { // Recibimos el ID desde Reviews.jsx
         <div className="container-ressenya">
             {reviews.length > 0 ? (
                 reviews.map((review) => (
-                    // LA KEY ES OBLIGATORIA AQUÍ
                     <div className="container-cardRessenya" key={review.id}>
                         <p>{review.description}</p>
                         <p><b>Nota:</b> {review.rating}/10</p>

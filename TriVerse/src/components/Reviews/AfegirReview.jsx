@@ -17,44 +17,42 @@ function AfegirReview({ id: propId, onClose }) {
             return;
         }
 
+        // 1. Extraemos el token exactamente igual que en Perfil
         const token = document.cookie
             .split('; ')
             .find(row => row.startsWith('token='))
             ?.split('=')[1];
 
-        console.log("Token recuperat:", token ? token.substring(0, 20) + "..." : "NO TROBAT");
-
-        const reviewData = {
-            description: description,
-            rating: parseFloat(rating),
-            object: parseInt(id)
-        };
+        const url = "http://127.0.0.1:8000/api/createReview/";
 
         try {
-            const token = localStorage.getItem('token');
-            const response = await fetch("http://127.0.0.1:8000/api/createReview/", {
+            // 2. Usamos la misma estructura de fetch que en tu componente Perfil
+            const response = await fetch(url, { 
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
+                    // Usamos "Token" porque es lo que te funciona en Perfil
+                    "Authorization": `Token ${token}`,
+                    "Content-Type": "application/json"
                 },
-                credentials: 'include',
-                body: JSON.stringify(reviewData)
+                body: JSON.stringify({
+                    description: description,
+                    rating: parseFloat(rating),
+                    object: parseInt(id)
+                })
             });
 
             if (response.ok) {
-                console.log("Review creada correctament");
-                navigate(0); 
+                console.log("La consulta ha anat bé");
+                window.location.reload(); 
             } else {
-                const text = await response.text();
-                console.error("Error", response.status, ":", text);
-                alert(response.status === 401 || response.status === 403
-                    ? "Error: No tens permís o el token ha caducat."
-                    : `Error del servidor (${response.status})`);
+                console.log("La consulta ha tingut algun error");
+                const errorData = await response.json();
+                alert(`Error: ${errorData.error || response.statusText}`);
             }
         } catch (error) {
-            console.log("Error de xarxa", error);
-            alert("Error de connexió: No s'ha pogut enviar la review.");
+            console.log("Error en la petició:", error);
+        } finally {
+            console.log("Final de la consulta");
         }
     };
 
@@ -68,7 +66,7 @@ function AfegirReview({ id: propId, onClose }) {
                         onChange={(e) => setDescription(e.target.value)}
                         rows={6} 
                         className="textarea-review"
-                        placeholder="Què t'ha semblat la pel·lícula?"
+                        placeholder="Què t'ha semblat?"
                     />
                     
                     <div className="rating-selector">
