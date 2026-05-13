@@ -49,7 +49,6 @@ function CardDonacio({ objectId }) {
 
     return (
         <div className="container-donacio">
-<<<<<<< Updated upstream
             {donation.map((d, i)=> (
             <ul key={i} className="ul-donacions">
                 <li><b>Nom d'usuari:</b> {d.username}</li>
@@ -57,7 +56,6 @@ function CardDonacio({ objectId }) {
                 <li><b>Telèfon:</b> {d.phone_number}</li>
             </ul>
             ))}
-=======
             {donations.length > 0 ? (
                 donations.map((d) => (
                     // Usamos d.id como key en lugar de 'i' para mejor rendimiento de React
@@ -77,7 +75,6 @@ function CardDonacio({ objectId }) {
             ) : (
                 <p>Encara no hi ha donacions per a aquest objecte.</p>
             )}
->>>>>>> Stashed changes
         </div>
     );
 }
