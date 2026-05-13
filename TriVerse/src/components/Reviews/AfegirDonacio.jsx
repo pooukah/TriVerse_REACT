@@ -54,20 +54,21 @@ function AfegirDonacio() {
                 <div className="div-afegir-donacio">
                     <label>
                         Username:
-                        <hr className="linia" />
+                        <br />
                             <input
                                 value={username}
                                 onChange={e => setUsername(e.target.value)}/>
                     </label>
                     <label>
                         Correu electrònic:
-                        <hr className="linia" />
+                        <br />
                         <input
                             value={email}
                             onChange={e => setEmail(e.target.value)}/>
                     </label>
                     <label>
                         Telèfon:
+                        <br/>
                         <input
                             value={phone_number}
                             onChange={e => setPhoneNumber(e.target.value)}/>

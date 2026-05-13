@@ -22,7 +22,6 @@ function ResetPassword() {
         window.location.assign("/perfil");
     }
 
-    const id = 6;
     
 
     const [password, setPassword] = useState('');
@@ -32,27 +31,29 @@ function ResetPassword() {
             .split('; ')
             .find(row => row.startsWith('token='))
             ?.split('=')[1];
+        
 
-            console.log('token:', token);
+        console.log('TOKEN:', token);
         
         if (!token) {
             console.log("No hi ha token");
             return;
         }
 
-        const url =`http://127.0.0.1:8000/api/profilePassword/${id}/`;
+        const url = "http://127.0.0.1:8000/api/profilePassword/";
 
         try {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    Authorization: `Token ${token}`,
+                    Authorization: `Bearer ${token.trim()}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     password
                 }),
             });
+           
 
             if (response.ok) {
                 console.log("La resposta és ok");
