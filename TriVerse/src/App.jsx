@@ -40,7 +40,7 @@ function App(){
         <Route path="/videojuegos" element={<Games />} />
         <Route path="/peliculas" element={<Movies />} />
         <Route path="/libros" element={<Books />} />
-        <Route path="/afegirDonacio" element={<AfegirDonacio />} />
+        <Route path="/afegirDonacio/:id" element={<AfegirDonacio />} />
       </Routes>
       <Footer />
     </div>

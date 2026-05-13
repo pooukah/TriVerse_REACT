@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 function AfegirDonacio() {
+    const {id} = useParams();
     const tornarPageReviews = () => {
             window.history.back();
         }
@@ -8,6 +10,12 @@ function AfegirDonacio() {
         const [username, setUsername] = useState("");
         const [email, setEmail] = useState("");
         const [phone_number, setPhoneNumber] = useState("");
+        const token = document.cookie
+            .split("; ")
+            .find(row =>row.startsWith("token="))
+            ?.split("=")[1];
+
+        console.log(token);
     
         const handleSubmit = async (e) => {
             e.preventDefault();
@@ -17,7 +25,8 @@ function AfegirDonacio() {
             const DonationData = {
                 username: username,
                 email: email,
-                phone_number: parseInt(phone_number, 10)
+                phone_number: parseInt(phone_number, 10),
+                object: Number(id)
             };
     
             try {
@@ -26,6 +35,7 @@ function AfegirDonacio() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`
                     },
                     body: JSON.stringify(DonationData)
                 });
@@ -58,14 +68,13 @@ function AfegirDonacio() {
                     </label>
                     <label>
                         Telèfon:
-                        <hr className="linia" />
                         <input
                             value={phone_number}
                             onChange={e => setPhoneNumber(e.target.value)}/>
                     </label>
                     <div className="botons-afegir-donacio">
                         <button type="button" onClick={tornarPageReviews}>Cancel·lar</button>
-                        <button type="submit" onClick={tornarPageReviews}>Afegir</button>
+                        <button type="submit">Afegir</button>
                     </div>
                 </div>
             </form>

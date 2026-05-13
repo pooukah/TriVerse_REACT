@@ -11,14 +11,14 @@ function CardDonacio({ objectId }) {
             .find(row => row.startsWith('token='))
             ?.split('=')[1];
 
-        const url = "http://127.0.0.1:8000/api/donation/?format=json";
+        const url = `http://127.0.0.1:8000/api/donation/${objectId}`;
         
         try {
             setLoading(true);
             const response = await fetch(url, { 
                 method: "GET",
                 headers: {
-                    "Authorization": token ? `Token ${token}` : "",
+                    "Authorization": token ? `Bearer ${token}` : "",
                     "Content-Type": "application/json"
                 }
             });
@@ -27,8 +27,8 @@ function CardDonacio({ objectId }) {
                 const data = await response.json();
                 // Filtramos las donaciones que pertenecen a este objeto
                 // Asegúrate de que 'd.object' coincida con el tipo de dato de 'objectId'
-                const filtradas = data.filter(d => String(d.object) === String(objectId));
-                setDonations(filtradas);
+                //const filtradas = data.filter(d => String(d.object) === String(objectId));
+                setDonations(data);
             } else {
                 console.error("Error al obtener donaciones:", response.status);
             }
@@ -49,13 +49,6 @@ function CardDonacio({ objectId }) {
 
     return (
         <div className="container-donacio">
-            {donation.map((d, i)=> (
-            <ul key={i} className="ul-donacions">
-                <li><b>Nom d'usuari:</b> {d.username}</li>
-                <li><b>Correu electrònic:</b> {d.email}</li>
-                <li><b>Telèfon:</b> {d.phone_number}</li>
-            </ul>
-            ))}
             {donations.length > 0 ? (
                 donations.map((d) => (
                     // Usamos d.id como key en lugar de 'i' para mejor rendimiento de React

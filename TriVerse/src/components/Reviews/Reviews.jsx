@@ -16,7 +16,7 @@ function Reviews() {
     const getFullImageUrl = (path) => path ? `${API_URL}${path}` : `${API_URL}/media/objects/avatar_upload.jpg`;
 
     const afegirDonacio = () => {
-        window.location.assign("/afegirDonacio");
+        window.location.assign(`/afegirDonacio/${id}`);
     }
 
     async function getObject() {
@@ -63,17 +63,14 @@ function Reviews() {
                     
                     <p className="plataforma">
                         <b>Plataforma:</b> {obj.platform}
-                        <hr className="linia-reviews" />
                     </p>
                     
                     <p className="tipus">
                         <b>Tipus:</b> {obj.type}
-                        <hr className="linia-reviews" />
                     </p>
                     
                     <p className="rating">
                         <b>Rating:</b> {obj.rating} / 10
-                        <hr className="linia-reviews" />
                     </p>
                     
                     <div className="div-botons-review">
@@ -100,7 +97,7 @@ function Reviews() {
 
             <section className="ressenyes-container">
                 <CardRessenya objectId={id} />
-                <CardDonacio objectId={id} />
+                <CardDonacio objectId={id}/>
             </section>
         </div>
     );
