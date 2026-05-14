@@ -132,7 +132,7 @@ function Reviews() {
 
             <section className="ressenyes-container">
                 <CardRessenya objectId={id} />
-                <CardDonacio objectId={id} />
+                <CardDonacio objectId={id}/>
             </section>
         </div>
     );

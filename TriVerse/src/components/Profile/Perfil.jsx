@@ -18,7 +18,7 @@ function Perfil() {
                 const response = await fetch(url, { 
                     method: "GET" ,
                     headers: {
-                        "Authorization": `Token ${token}`,
+                        "Authorization": `Bearer ${token}`,
                         "Content-Type": "application/json"
                      }
                 });
@@ -55,21 +55,16 @@ function Perfil() {
                     <ul className="dades-perfil">
                         <li>
                             <b>Nom d'usuari:</b> {profileData.username}
-                            <hr className="linia"/>
                         </li>
                         <li>
                             <b>Correu electrònic:</b> {profileData.email}
-                            <hr className="linia" />
                         </li>
                         <li>
                             <b>Nom:</b> {profileData.first_name || profileData.name}
-                            <hr className="linia" />
                         </li>
                         <li>
                             <b>Cognoms:</b> {profileData.last_name || profileData.surname}
-                            <hr className="linia" />
                         </li>
-    
                         <li>
                         <button className="boto-reset-password" onClick={resetPassword}>
                                 Canviar contrasenya
