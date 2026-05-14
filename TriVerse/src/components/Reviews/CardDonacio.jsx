@@ -6,39 +6,19 @@ function CardDonacio({ objectId }) {
     const [error, setError] = useState(null);
 
     async function getDonation() {
-<<<<<<< HEAD
         const url = `http://127.0.0.1:8000/api/donations/${objectId}/`;
-=======
-        // 1. Extraemos el token por si el endpoint es privado
-        const token = document.cookie
-            .split('; ')
-            .find(row => row.startsWith('token='))
-            ?.split('=')[1];
-
-        const url = `http://127.0.0.1:8000/api/donation/${objectId}`;
->>>>>>> 229f7aa2b407ea66560842b722d9f59c9a9ce3c4
         
         try {
             setLoading(true);
             const response = await fetch(url, { 
                 method: "GET",
                 headers: {
-<<<<<<< HEAD
-=======
-                    "Authorization": token ? `Bearer ${token}` : "",
->>>>>>> 229f7aa2b407ea66560842b722d9f59c9a9ce3c4
                     "Content-Type": "application/json"
                 }
             });
 
             if(response.ok) {
                 const data = await response.json();
-<<<<<<< HEAD
-=======
-                // Filtramos las donaciones que pertenecen a este objeto
-                // Asegúrate de que 'd.object' coincida con el tipo de dato de 'objectId'
-                //const filtradas = data.filter(d => String(d.object) === String(objectId));
->>>>>>> 229f7aa2b407ea66560842b722d9f59c9a9ce3c4
                 setDonations(data);
             } else {
                 console.error("Error al obtener donaciones:", response.status);
