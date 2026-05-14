@@ -19,7 +19,6 @@ const AuthContainer = ({ onSuccess }) => {
     setErrors({});
   }, [isLogin]);
 
-  // (Mantenemos tus funciones validateEmail y validatePassword igual...)
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const validatePassword = (pass) => /[A-Z]/.test(pass) && /\d/.test(pass) && pass.length >= 8;
 

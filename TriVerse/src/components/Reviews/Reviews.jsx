@@ -12,12 +12,44 @@ function Reviews() {
     const [obj, setObj] = useState(null); 
     const [isOpen, setIsOpen] = useState(false);
 
-    // 1. Definimos la función para la imagen
     const getFullImageUrl = (path) => path ? `${API_URL}${path}` : `${API_URL}/media/objects/avatar_upload.jpg`;
 
-    const afegirDonacio = () => {
-        window.location.assign("/afegirDonacio");
-    }
+    const handleSubmitDonacion = async () => {
+        const token = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('token='))
+            ?.split('=')[1];
+
+        if (!token) {
+            alert("Has d'iniciar sessió per fer una donació.");
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/api/addDonation/`, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Token ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    object: id 
+                })
+            });
+
+            if (response.ok) {
+                alert("Donació realitzada correctament!");
+                window.location.reload(); // Recarreguem per actualitzar la llista de donacions
+            } else {
+                const errorData = await response.json();
+                console.error("Error servidor:", errorData);
+                alert("No s'ha pogut realitzar la donació.");
+            }
+        } catch (error) {
+            console.error("Error de xarxa:", error);
+            alert("Error de connexió amb el servidor.");
+        }
+    };
 
     async function getObject() {
         const url = `${API_URL}/api/object/${id}/`; 
@@ -25,10 +57,9 @@ function Reviews() {
             const response = await fetch(url, { method: "GET" });
             if (response.ok) {
                 const data = await response.json();
-                console.log("Datos recibidos:", data);
                 setObj(data); 
             } else {
-                console.error("Error: No se encontró la película");
+                console.error("Error: No se encontró el objeto");
             }
         } catch (error) {
             console.log("Error de red:", error);
@@ -42,7 +73,7 @@ function Reviews() {
     }, [id]);
 
     if (!obj) {
-        return <div style={{padding: "20px"}}>Carregant dades de la pel·lícula...</div>;
+        return <div style={{padding: "20px"}}>Carregant dades...</div>;
     }
 
     return (
@@ -61,26 +92,27 @@ function Reviews() {
 
                     <p className="sinopsis">{obj.sinopsis || "Sense sinopsi disponible"}</p>
                     
-                    <p className="plataforma">
+                    {/* Estructura corregida: div en lloc de p per evitar errors d'hidratació amb <hr> */}
+                    <div className="plataforma">
                         <b>Plataforma:</b> {obj.platform}
                         <hr className="linia-reviews" />
-                    </p>
+                    </div>
                     
-                    <p className="tipus">
+                    <div className="tipus">
                         <b>Tipus:</b> {obj.type}
                         <hr className="linia-reviews" />
-                    </p>
+                    </div>
                     
-                    <p className="rating">
+                    <div className="rating">
                         <b>Rating:</b> {obj.rating} / 10
                         <hr className="linia-reviews" />
-                    </p>
+                    </div>
                     
                     <div className="div-botons-review">
                         <button className="add-button" onClick={() => setIsOpen(true)}>
                             Afegir review
                         </button>
-                        <button onClick={afegirDonacio}>
+                        <button className="donation-button" onClick={handleSubmitDonacion}>
                             Afegir donació
                         </button>
                     </div>

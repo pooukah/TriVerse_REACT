@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 
-function CardRessenya({ objectId }) { // Recibimos el ID desde Reviews.jsx
+function CardRessenya({ objectId }) { 
     const [reviews, setReviews] = useState([]);
     
     async function getReview() {
-        // Asegúrate de poner la barra / al final
         const url = "http://127.0.0.1:8000/api/reviews/"; 
         try {
             const response = await fetch(url, { method: "GET" });

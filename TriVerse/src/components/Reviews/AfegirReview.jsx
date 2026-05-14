@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function AfegirReview({ id: propId, onClose }) {
+function AfegirReview({ id: propId }) {
     const { id: paramsId } = useParams();
     const id = propId || paramsId;
     const navigate = useNavigate();
@@ -17,7 +17,6 @@ function AfegirReview({ id: propId, onClose }) {
             return;
         }
 
-        // 1. Extraemos el token exactamente igual que en Perfil
         const token = document.cookie
             .split('; ')
             .find(row => row.startsWith('token='))
@@ -26,11 +25,9 @@ function AfegirReview({ id: propId, onClose }) {
         const url = "http://127.0.0.1:8000/api/createReview/";
 
         try {
-            // 2. Usamos la misma estructura de fetch que en tu componente Perfil
             const response = await fetch(url, { 
                 method: "POST",
                 headers: {
-                    // Usamos "Token" porque es lo que te funciona en Perfil
                     "Authorization": `Token ${token}`,
                     "Content-Type": "application/json"
                 },
@@ -84,10 +81,10 @@ function AfegirReview({ id: propId, onClose }) {
                     </div>
 
                     <div className="botons-afegir-review">
-                        <button type="button" onClick={onClose} className="btn-cancel">
+                        <button type="button" onClick={() => navigate(-1)} className="btn-cancel">
                             Cancelar
                         </button>
-                        <button onClick={onClose} type="submit" className="btn-add">
+                        <button type="submit" className="btn-add">
                             Afegir Review
                         </button>
                     </div>
