@@ -50,13 +50,13 @@ function CardDonacio({ objectId }) {
                         padding: '10px',
                         listStyle: 'none'
                     }}>
-                        <li><b>Usuari:</b> {d.username || 'Anònim'}</li>
-                        <li><b>Email:</b> {d.email || 'No disponible'}</li>
-                        <li><b>Telèfon:</b> {d.phone_number || 'No proporcionat'}</li>
+                        <li><b>Usuario:</b> {d.username || 'Anònim'}</li>
+                        <li><b>Correo electrónico:</b> {d.email || 'No disponible'}</li>
+                        <li><b>Teléfono:</b> {d.phone_number || 'No proporcionado'}</li>
                     </ul>
                 ))
             ) : (
-                <p style={{padding: "10px"}}>Encara no hi ha donacions per a aquest objecte.</p>
+                <p style={{padding: "10px"}}>Todavía no hay donaciones para este objeto</p>
             )}
         </div>
     );

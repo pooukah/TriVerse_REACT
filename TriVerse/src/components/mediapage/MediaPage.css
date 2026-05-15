@@ -1,29 +1,47 @@
-
 .media-page {
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
-.section {
-    margin-bottom: 40px;
+.media-page .page-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 48px;
+  color: #3d3d5c;
+  letter-spacing: -0.5px;
 }
 
-.section-title {
-    margin-bottom: 20px;
+.media-page .section {
+  margin-bottom: 48px;
 }
 
-.cards-grid {
-    display: flex;           
-    gap: 20px;
-    overflow-x: auto;       
-    padding-bottom: 10px;   
+.media-page .section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2c2826;
+  padding-left: 4px;
 }
 
-.cards-grid .media-card {
-    min-width: 200px;       
-    max-width: 200px;       
+.media-page .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
-.page-title {
-    text-align: center;
-    margin-bottom: 30px;
+@media (max-width: 640px) {
+  .media-page {
+    padding: 24px 12px;
+  }
+
+  .media-page .page-title {
+    font-size: 1.6rem;
+    margin-bottom: 32px;
+  }
+
+  .media-page .section-title {
+    font-size: 1.2rem;
+  }
 }

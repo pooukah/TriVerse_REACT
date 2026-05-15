@@ -1,26 +1,47 @@
 .footer {
   display: flex;
   justify-content: space-around;
-  padding: 30px;
-  background-color: #75759b;  
-  margin-top: 50px;  
+  padding: 40px 20px;
+  background: #3d3d5c;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .seccion {
   text-align: center;
+  min-width: 140px;
 }
 
-.seccion h3, .seccion h4 {
-  color: white;
-  margin-bottom: 15px;
+.seccion h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.seccion h4 {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .seccion p {
-  color: #cccccc;
-  margin: 8px 0;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 6px 0;
+  font-size: 0.9rem;
+  transition: 0.3s ease;
 }
 
 .seccion p:hover {
-  color: white;
-  cursor: pointer;
+  color: #fff;
+}
+
+@media (max-width: 480px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import edit_icon from '../../imatges/edit_icon.png';
+import './Profile.css';
 
 function Perfil() {    
     const resetPassword = () => {
@@ -54,25 +55,25 @@ function Perfil() {
                 {profileData ? (
                     <ul className="dades-perfil">
                         <li>
-                            <b>Nom d'usuari:</b> {profileData.username}
+                            <b>Nombre de usuario:</b> {profileData.username}
                         </li>
                         <li>
-                            <b>Correu electrònic:</b> {profileData.email}
+                            <b>Correo electrónico:</b> {profileData.email}
                         </li>
                         <li>
-                            <b>Nom:</b> {profileData.first_name || profileData.name}
+                            <b>Nombre:</b> {profileData.first_name || profileData.name}
                         </li>
                         <li>
-                            <b>Cognoms:</b> {profileData.last_name || profileData.surname}
+                            <b>Apellidos:</b> {profileData.last_name || profileData.surname}
                         </li>
                         <li>
                         <button className="boto-reset-password" onClick={resetPassword}>
-                                Canviar contrasenya
+                                Canviar contraseña
                         </button>                        
                         </li>
                     </ul>
                 ) : (
-                    <p>Carregant dades...</p>
+                    <p>Cargando datos...</p>
                 )}                  
                 </div>
             </div>

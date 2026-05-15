@@ -36,7 +36,7 @@ function CardRessenya({ objectId }) {
                     </div>
                 ))
             ) : (
-                <p>Encara no hi ha ressenyes per a este objecte.</p>
+                <p>Todavía no hay reseñas para este objeto</p>
             )}
         </div>
     );

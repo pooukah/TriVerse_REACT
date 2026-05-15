@@ -1,31 +1,48 @@
+.home {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
 
-.media-page {
-    padding: 20px;
+.home .page-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 48px;
+  color: #3d3d5c;
+  letter-spacing: -0.5px;
 }
 
 .section {
-    margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .section-title {
-    margin-bottom: 20px;
-    color:darkseagreen;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2c2826;
+  padding-left: 4px;
+  position: relative;
 }
 
 .cards-grid {
-    display: flex;           
-    gap: 20px;
-    overflow-x: auto;       
-    padding-bottom: 10px;   
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
-.cards-grid .media-card {
-    min-width: 200px;       
-    max-width: 200px;       
-}
+@media (max-width: 640px) {
+  .home {
+    padding: 24px 12px;
+  }
 
-.page-title {
-    text-align: center;
-    margin-bottom: 30px;
-    color:rosybrown;
+  .home .page-title {
+    font-size: 1.6rem;
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
 }

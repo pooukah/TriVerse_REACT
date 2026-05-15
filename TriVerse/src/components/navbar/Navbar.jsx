@@ -50,6 +50,11 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <h2 className="logo" onClick={() => navigate('/')} style={{ cursor: 'pointer' }}>
+        <span className="logo-circles">
+          <span className="circle circle-1"></span>
+          <span className="circle circle-2"></span>
+          <span className="circle circle-3"></span>
+        </span>
         TriVerse
       </h2>
 
