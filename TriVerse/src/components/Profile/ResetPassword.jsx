@@ -8,10 +8,10 @@ function mostrarPassword() {
     let iconPassword = document.querySelector(".password-ocult");
 
     if(x.type === "password") {
-        x.type = "text"; // Fer la contrasenya visible
+        x.type = "text"; 
         iconPassword.src= eye_visible;
     } else {
-        x.type = "password"; // Ocultar contrasenya
+        x.type = "password"; 
         iconPassword.src = eye_off_icon;
     }
 }
@@ -21,8 +21,6 @@ function ResetPassword() {
     const cancelarReset = () => {
         window.location.assign("/perfil");
     }
-
-    
 
     const [password, setPassword] = useState('');
 
@@ -53,7 +51,6 @@ function ResetPassword() {
                     password
                 }),
             });
-           
 
             if (response.ok) {
                 console.log("La resposta és ok");
@@ -67,9 +64,7 @@ function ResetPassword() {
             console.log("obtenim les dades", dades);
         } catch (error) {
             console.log(error);
-        } finally {
-            console.log("Codi final del fetch");
-        }
+        } 
     };
 
     
@@ -92,7 +87,5 @@ function ResetPassword() {
         </div>
     )
 }
-
-
 
 export default ResetPassword;

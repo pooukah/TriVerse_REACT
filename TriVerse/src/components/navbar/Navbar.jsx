@@ -1,26 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import './Navbar.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode'; // Asegúrate de haber hecho: npm install jwt-decode
 import { estaLogueado } from '../../utils';
 import Modal from '../auth/Modal.jsx';
 import AuthContainer from '../auth/AuthContainer';
-import { Link, useNavigate } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
   const [logged, setLogged] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLogged(estaLogueado());
+    const tokenOk = estaLogueado();
+    setLogged(tokenOk);
+
+    if (tokenOk) {
+      const token = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('token='))
+        ?.split('=')[1];
+
+      if (token) {
+        try {
+          const decoded = jwtDecode(token);
+          setIsAdmin(decoded.is_admin === true);
+
+        } catch (error) {
+          console.error("Error decodificando el token:", error);
+          setIsAdmin(false);
+        }
+      }
+    } else {
+      setIsAdmin(false);
+    }
   }, []);
 
   const handleLogout = () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     setLogged(false);
+    setIsAdmin(false);
     setDropdownOpen(false);
     navigate("/");
-    window.location.reload(); // Para asegurar que el estado de auth se limpie en toda la app
+    window.location.reload(); 
   };
 
   return (
@@ -34,6 +58,12 @@ const Navbar = () => {
         <Link to="/videojuegos" className="btn">Videojuegos</Link>
         <Link to="/peliculas" className="btn">Películas</Link>
         <Link to="/libros" className="btn">Libros</Link>
+
+        {logged && isAdmin && (
+          <Link to="/add-object" className="btn btn-admin">
+            + Añadir Objeto
+          </Link>
+        )}
 
         {logged ? (
           <div className="profile-dropdown-container">
@@ -65,7 +95,6 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* --- EL MODAL CON PORTAL --- */}
       {showAuthModal && (
         <Modal onClose={() => setShowAuthModal(false)}>
           <AuthContainer 
@@ -73,7 +102,7 @@ const Navbar = () => {
               setShowAuthModal(false);
               setLogged(true);
             }} 
-            onClose={() => setShowAuthModal(false)} // Pasamos también aquí si el componente interno tiene su propia X
+            onClose={() => setShowAuthModal(false)} 
           />
         </Modal>
       )}
