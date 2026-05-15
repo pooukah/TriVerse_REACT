@@ -3,29 +3,23 @@ import { useNavigate } from 'react-router-dom';
 import eye_off_icon from '../../imatges/eye_off_icon.png';
 import eye_visible from '../../imatges/eye_visible.png';
 import './Profile.css';
-
 function ResetPassword() {
   const navigate = useNavigate();
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-
   const togglePassword = () => setShowPassword(!showPassword);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
     const token = document.cookie
       .split('; ')
       .find(row => row.startsWith('token='))
       ?.split('=')[1];
-
     if (!token) {
       setError('No has iniciat sessió');
       return;
     }
-
     try {
       const response = await fetch('http://127.0.0.1:8000/api/profilePassword/', {
         method: 'POST',
@@ -35,7 +29,6 @@ function ResetPassword() {
         },
         body: JSON.stringify({ password }),
       });
-
       if (response.ok) {
         alert('Contrasenya canviada');
         navigate('/perfil');
@@ -49,7 +42,6 @@ function ResetPassword() {
       setError('No s\'ha pogut connectar amb el servidor');
     }
   };
-
   return (
     <div className="container-reset-password">
       <div className="div-reset-password">
