@@ -1,30 +1,52 @@
 .media-card {
-    background-color: #8182b5;
-    width: 200px;           
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+  background: #f5efe4;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(44,40,38,0.06);
+  transition: 0.3s ease;
 }
 
+.media-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(44,40,38,0.12);
+}
+
+.media-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #c8c1d6;
+}
 
 .media-image img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;      
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.media-card:hover .media-image img {
+  transform: scale(1.05);
 }
 
 .media-info {
-    padding: 10px;
+  padding: 12px 14px 14px;
 }
 
 .media-title {
-    font-size: 16px;
-    margin: 0 0 5px 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #2c2826;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .media-rating {
-    font-size: 14px;
-    color: #313131;
-    margin: 0;
+  font-size: 0.85rem;
+  color: #c97b5e;
+  font-weight: 600;
+  margin: 0;
 }

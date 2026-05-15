@@ -1,10 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function AfegirReview({ id: propId }) {
-    const { id: paramsId } = useParams();
-    const id = propId || paramsId;
-    const navigate = useNavigate();
+function AfegirReview({ id: propId, onClose }) {
+    const id = propId;
 
     const [description, setDescription] = useState("");
     const [rating, setRating] = useState("");
@@ -57,18 +54,18 @@ function AfegirReview({ id: propId }) {
         <div className="modal-content-review">
             <form onSubmit={handleSubmit}>
                 <div className="div-afegir-ressenya">
-                    <h3 style={{marginBottom: '10px'}}>La teva opinió</h3>
+                    <h3 style={{marginBottom: '10px'}}>Tu opinión</h3>
                     <textarea
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         rows={6} 
                         className="textarea-review"
-                        placeholder="Què t'ha semblat?"
+                        placeholder="Qué te ha parecido?"
                     />
                     
                     <div className="rating-selector">
                         <label>
-                            <b>Puntuació (1-10):</b>
+                            <b>Puntuación (1-10):</b>
                             <input
                                 type="number"
                                 min="1"
@@ -81,11 +78,11 @@ function AfegirReview({ id: propId }) {
                     </div>
 
                     <div className="botons-afegir-review">
-                        <button type="button" onClick={() => navigate(-1)} className="btn-cancel">
+                        <button type="button" onClick={onClose} className="btn-cancel">
                             Cancelar
                         </button>
                         <button type="submit" className="btn-add">
-                            Afegir Review
+                            Añadir Review
                         </button>
                     </div>
                 </div>

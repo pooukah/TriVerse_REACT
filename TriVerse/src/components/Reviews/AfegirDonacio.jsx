@@ -49,7 +49,7 @@ function AfegirDonacio() {
         }
     
     return (
-        <div className="container-donacio">
+        <div className="container-donacio-full">
             <form onSubmit={handleSubmit}>
                 <div className="div-afegir-donacio">
                     <label>

@@ -1,87 +1,110 @@
-/* --- ESTILOS DEL MODAL (AUTH) --- */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 10000;
+  padding: 20px;
 }
 
 .modal-content {
-  background: #fff;
-  padding: 40px;
+  background: #f5efe4;
+  padding: 40px 36px;
   width: 100%;
-  max-width: 360px;
-  border-radius: 8px;
+  max-width: 380px;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   position: relative;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.modal-body {
+  width: 100%;
+}
+
+.auth-internal-container {
+  width: 100%;
 }
 
 .tabs {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 25px;
-  border-bottom: 2px solid #eee;
+  margin-bottom: 28px;
+  border-bottom: 2px solid #cec3b0;
 }
 
 .tabs button {
+  flex: 1;
+  padding: 10px;
   background: none;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-weight: bold;
-  color: rgb(0, 0, 0); 
-  transition: all 0.3s ease;
-  font-size: 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6b6157;
+  transition: 0.3s ease;
+  position: relative;
 }
 
 .tabs button.active {
-  color: #75759b; 
-  border-bottom: 3px solid #75759b;
+  color: #3d3d5c;
+}
+
+.tabs button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #3d3d5c;
+  border-radius: 1px;
 }
 
 .tabs button:hover {
-  color: #75759b;
+  color: #3d3d5c;
 }
 
 .auth-input {
   width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
+  padding: 11px 14px;
+  margin: 8px 0;
+  border: 1px solid #cec3b0;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+  background: #d6d1e3;
+}
+
+.auth-input:focus {
+  border-color: #6a6a88;
+  background: #f5efe4;
+  box-shadow: 0 0 0 3px rgba(106, 106, 136, 0.12);
+}
+
+.error-text {
+  color: #c0392b;
+  font-size: 0.8rem;
+  margin: 2px 0 6px;
+  display: block;
 }
 
 .btn-yellow {
-  background: #75759b; 
-  color: rgb(0, 0, 0); 
-  border: none;
   width: 100%;
-  padding: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
-  border-radius: 4px;
+  padding: 12px;
+  background: #3d3d5c;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
   text-transform: uppercase;
-  font-size: 16px;
-  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+  margin-top: 20px;
+  transition: 0.3s ease;
 }
 
 .btn-yellow:hover {
-  color: rgb(255, 255, 255); 
-  background-color: #5e5e80; 
+  background: #2d2d44;
+  transform: translateY(-1px);
 }
-
-.close-btn {
-  top: 10px;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-}
-

@@ -1,98 +1,89 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import eye_off_icon from '../../imatges/eye_off_icon.png';
 import eye_visible from '../../imatges/eye_visible.png';
-import React, { useState, useEffect } from 'react';
-
-// Funció per activar i desactivar la visibilitat de la contrasenya
-function mostrarPassword() {
-    let x = document.querySelector(".input-password");
-    let iconPassword = document.querySelector(".password-ocult");
-
-    if(x.type === "password") {
-        x.type = "text"; // Fer la contrasenya visible
-        iconPassword.src= eye_visible;
-    } else {
-        x.type = "password"; // Ocultar contrasenya
-        iconPassword.src = eye_off_icon;
-    }
-}
-
+import './Profile.css';
 
 function ResetPassword() {
-    const cancelarReset = () => {
-        window.location.assign("/perfil");
+  const navigate = useNavigate();
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  const togglePassword = () => setShowPassword(!showPassword);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    const token = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('token='))
+      ?.split('=')[1];
+
+    if (!token) {
+      setError('No has iniciat sessió');
+      return;
     }
 
-    
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/profilePassword/', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
 
-    const [password, setPassword] = useState('');
+      if (response.ok) {
+        alert('Contrasenya canviada');
+        navigate('/perfil');
+      } else {
+        const text = await response.text();
+        let msg = 'Error en canviar la contrasenya';
+        try { msg = JSON.parse(text).error || msg; } catch {}
+        setError(msg);
+      }
+    } catch {
+      setError('No s\'ha pogut connectar amb el servidor');
+    }
+  };
 
-    const handlePassword = async () => {
-        const token = document.cookie
-            .split('; ')
-            .find(row => row.startsWith('token='))
-            ?.split('=')[1];
-        
-
-        console.log('TOKEN:', token);
-        
-        if (!token) {
-            console.log("No hi ha token");
-            return;
-        }
-
-        const url = "http://127.0.0.1:8000/api/profilePassword/";
-
-        try {
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${token.trim()}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    password
-                }),
-            });
-           
-
-            if (response.ok) {
-                console.log("La resposta és ok");
-                alert("Contrasenya canviada");
-            } else {
-                console.log("Error en la resposta");
-                throw new Error("Error en la resposta");
-            }
-
-            const dades = await response.json();
-            console.log("obtenim les dades", dades);
-        } catch (error) {
-            console.log(error);
-        } finally {
-            console.log("Codi final del fetch");
-        }
-    };
-
-    
-           
-    return (
-        <div>
-            <div className="container-reset-password">
-                <div className="div-reset-password">
-                    <h1>Restablir contrasenya</h1>
-                    <label>
-                        Contrasenya: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} name="contrasenya" className="input-password" /><img src={eye_off_icon} onClick={mostrarPassword} alt="password ocult" className="password-ocult"/>
-                        
-                        <div className="botons-reset-password">
-                            <button onClick={cancelarReset}>Cancel·lar</button>
-                            <button onClick={handlePassword}>Restablir</button>
-                        </div>
-                    </label>
-                </div>
+  return (
+    <div className="container-reset-password">
+      <div className="div-reset-password">
+        <h1>Restablir contrasenya</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Contraseña:
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="input-password"
+                required
+              />
+              <img
+                src={showPassword ? eye_visible : eye_off_icon}
+                onClick={togglePassword}
+                alt="mostrar contrasenya"
+                className="password-ocult"
+              />
             </div>
-        </div>
-    )
+          </label>
+          {error && <p className="error-text">{error}</p>}
+          <div className="botons-reset-password">
+            <button type="button" onClick={() => navigate('/perfil')}>
+              Cancel·lar
+            </button>
+            <button type="submit">Restablecer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 }
-
-
 
 export default ResetPassword;

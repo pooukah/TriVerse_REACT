@@ -73,7 +73,7 @@ function Reviews() {
     }, [id]);
 
     if (!obj) {
-        return <div style={{padding: "20px"}}>Carregant dades...</div>;
+        return <div style={{padding: "20px"}}>Cargando datos...</div>;
     }
 
     return (
@@ -99,7 +99,7 @@ function Reviews() {
                     </div>
                     
                     <div className="tipus">
-                        <b>Tipus:</b> {obj.type}
+                        <b>Tipo:</b> {obj.type}
                         <hr className="linia-reviews" />
                     </div>
                     
@@ -110,24 +110,26 @@ function Reviews() {
                     
                     <div className="div-botons-review">
                         <button className="add-button" onClick={() => setIsOpen(true)}>
-                            Afegir review
+                            Añadir review
                         </button>
                         <button className="donation-button" onClick={handleSubmitDonacion}>
-                            Afegir donació
+                            Añadir donación
                         </button>
                     </div>
                 </div>
             </div> 
 
             {isOpen && (
-                <div className="modal-afegir-review">
-                    <AfegirReview id={id} onClose={() => setIsOpen(false)} />
+                <div className="modal-afegir-review" onClick={() => setIsOpen(false)}>
+                    <div onClick={(e) => e.stopPropagation()}>
+                        <AfegirReview id={id} onClose={() => setIsOpen(false)} />
+                    </div>
                 </div>
             )}
 
             <div className="subtitols-reviews">
-                <h1 className="subtitol-review">Totes les reviews</h1>
-                <h1 className="subtitol-donacions">Donacions</h1>
+                <h1 className="subtitol-review">Todas las reviews</h1>
+                <h1 className="subtitol-donacions">Donaciones</h1>
             </div>
 
             <section className="ressenyes-container">
