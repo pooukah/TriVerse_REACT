@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import eye_off_icon from '../../imatges/eye_off_icon.png';
 import eye_visible from '../../imatges/eye_visible.png';
 import './Profile.css';
+
 function ResetPassword() {
   const navigate = useNavigate();
   const [password, setPassword] = useState('');
