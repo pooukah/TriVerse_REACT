@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode'; // Asegúrate de haber hecho: npm install jwt-decode
 import { estaLogueado } from '../../utils';
@@ -11,7 +11,18 @@ const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const tokenOk = estaLogueado();
@@ -71,7 +82,7 @@ const Navbar = () => {
         )}
 
         {logged ? (
-          <div className="profile-dropdown-container">
+          <div className="profile-dropdown-container" ref={dropdownRef}>
             <button 
               className="btn btn-profile" 
               onClick={() => setDropdownOpen(!dropdownOpen)}
