@@ -43,7 +43,8 @@ const AuthContainer = ({ onSuccess }) => {
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datos)
+        body: JSON.stringify(datos),
+        credentials: 'include'
       });
       const data = await response.json();
 
@@ -90,6 +91,7 @@ const AuthContainer = ({ onSuccess }) => {
         )}
 
         {errors.non_field_errors && <div className="error-text">{errors.non_field_errors}</div>}
+        {errors.detail && <div className="error-text">{errors.detail}</div>}
         {errors.connection && <div className="error-text">{errors.connection}</div>}
         
         <button type="submit" className="btn-yellow">
