@@ -1,3 +1,5 @@
 # TriVerse_REACT
 
-https://drive.google.com/file/d/10vZEt0RXMIpUiwry8YwZp0OfwOGai7nB/view?usp=sharing
+## Vídeo projecte DSAW
+
+<a href="https://drive.google.com/file/d/1RiqLVQrSEvvy4u5oPstQnNk-AHFixz2o/view?usp=sharing" target="_blank">Vídeo projecte TriVerse</a>
